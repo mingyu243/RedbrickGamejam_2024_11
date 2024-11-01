@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
 
     Rigidbody2D playerRigid;
     SpriteRenderer spriteRenderer;
+    Animator animator;
 
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
+        animator.SetFloat("Speed", inputVec.magnitude);
+
         if(inputVec.x != 0)
         {
             spriteRenderer.flipX = inputVec.x < 0 ? true : false;
