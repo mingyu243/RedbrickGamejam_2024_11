@@ -26,4 +26,9 @@ public class Enemy : MonoBehaviour
         EnemyRigid.MovePosition(EnemyRigid.position + nextVec);
         EnemyRigid.velocity = Vector2.zero;
     }
+
+    void LateUpdate()
+    {
+        spriteRenderer.flipX = target.position.x > EnemyRigid.position.x ? false : true;
+    }
 }
