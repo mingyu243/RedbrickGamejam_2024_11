@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
 
     public void InitState()
     {
+        if(!isLive)
+        {
+            isLive = true;
+            animator.SetTrigger("Retry");
+        }
         playerData = Managers.Data.PlayerDatas[0];
 
         //attack = playeraData.Attack;
