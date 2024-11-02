@@ -309,6 +309,7 @@ MonoBehaviour:
   damageRange: 2
   damageAmount: 5
   damageInterval: 1
+  weapon: {fileID: 7266045266445370102}
 --- !u!1 &8871414100113041500
 GameObject:
   m_ObjectHideFlags: 0
