@@ -32,6 +32,8 @@ public class MainGame : MonoBehaviour
     [Space]
     [SerializeField] TimeController _timeController;
     [SerializeField] WaveController _waveController;
+    [SerializeField] ZoneController _zoneController;
+    [Space]
     [SerializeField] MonsterSpawner _monsterSpawner;
     [SerializeField] Transform _playerSpawnPositionTr;
 
@@ -39,6 +41,7 @@ public class MainGame : MonoBehaviour
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
     public TimeController TimeController => _timeController;
     public WaveController WaveController => _waveController;
+    public ZoneController ZoneController => _zoneController;
     public MonsterSpawner MonsterSpawner => _monsterSpawner;
     public Player Player => _player;
     public Orb Orb => _orb;
@@ -114,6 +117,7 @@ public class MainGame : MonoBehaviour
 
         TimeController.Init();
         WaveController.Init();
+        ZoneController.Init();
 
         Player.InitState();
         Player.transform.position = _playerSpawnPositionTr.position;
