@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public float attackCooldown = 1.5f; // 공격 쿨타임
     private float lastAttackTime = 0f; // 마지막 공격 시간
 
-    bool isLive = true;
+    public bool isLive = true;
     bool isAttacking = false; // 공격 중 여부
 
     Rigidbody2D EnemyRigid;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         }
 
         // 공격 중이 아니라면 이동
-        if (!isAttacking)
+        if (!isAttacking || isLive)
         {
             MoveTowardsTarget();
         }
