@@ -7,4 +7,5 @@ public class PlayerData
     public float AttackSpeed;
     public int Hp;
     public float MoveSpeed;
+    public float AttackRange;
 }

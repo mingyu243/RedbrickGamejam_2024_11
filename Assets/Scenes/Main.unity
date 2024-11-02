@@ -351,6 +351,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2107089160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107089162}
+  - component: {fileID: 2107089161}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2107089161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107089160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181dba3d2ed3df048b70ef5ebfbe45af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDatas: []
+  _monsterDatas: []
+  _orbDatas: []
+  _timeEventDatas: []
+  _waveDatas: []
+  _zoneDatas: []
+--- !u!4 &2107089162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107089160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3970939655673969315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,6 +516,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525603391738360798, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805396928513561684, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
+      propertyPath: playerData.Attack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805396928513561684, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
+      propertyPath: playerData.MoveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805396928513561684, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
+      propertyPath: playerData.AttackRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805396928513561684, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
+      propertyPath: playerData.AttackSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7427911879550815080, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
@@ -617,3 +683,4 @@ SceneRoots:
   - {fileID: 3970939655673969315}
   - {fileID: 6566248566718255052}
   - {fileID: 8200505910964135692}
+  - {fileID: 2107089162}
