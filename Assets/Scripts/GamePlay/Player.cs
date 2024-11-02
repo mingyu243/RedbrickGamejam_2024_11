@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
     void LateUpdate()
     {
         if (!isLive) return;
-        //animator.SetFloat("Speed", inputVec.magnitude);
+        animator.SetFloat("Speed", inputVec.magnitude);
 
         if(inputVec.x != 0)
         {
