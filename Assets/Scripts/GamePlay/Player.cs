@@ -12,8 +12,11 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     PlayerHealth playerHealth;
+    PlayerMental playerMental;
     [SerializeField] WeaponManager weaponManager;
     public WeaponManager Weapon => weaponManager;
+    public PlayerHealth PlayerHealth => playerHealth;
+    public PlayerMental PlayerMental => playerMental;
 
     private float moveSoundCooldown = 0.7f; // 사운드 재생 간격 (초)
     private float lastMoveSoundTime; // 마지막으로 사운드가 재생된 시간
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerMental = GetComponent<PlayerMental>();
     }
 
     public void InitState()
@@ -41,11 +45,8 @@ public class Player : MonoBehaviour
         //moveSpeed = playeraData.MoveSpeed;
 
         Weapon.SetWeaponRange(playerData.WeaponRange);
-
-        if (playerHealth != null)
-        {
-            playerHealth.InitializeHealth(playerData.Hp);
-        }
+        PlayerHealth.InitializeHealth(playerData.Hp);
+        PlayerMental.Init();
     }
 
     // Update is called once per frame

@@ -129,18 +129,24 @@ public class MainGame : MonoBehaviour
         GameState = GameState.Ready;
 
         Managers.Ui.ShowUI(UIType.Battle);
-        yield return null;
+        Player.PlayerMental.SetVisibleSlider(true);
+
+        yield return new WaitForSeconds(2f);
     }
 
     IEnumerator BattlePhase()
     {
         GameState = GameState.Battle;
 
+        Player.PlayerMental.IsOn = true;
+
         while (GameResult == GameResult.None)
         {
             TimeController.OnUpdate();
             yield return null;
         }
+
+        Player.PlayerMental.IsOn = false;
     }
 
     IEnumerator ResultPhase()
@@ -178,6 +184,7 @@ public class MainGame : MonoBehaviour
         }
 
         MonsterSpawner.Clear();
+        Player.PlayerMental.SetVisibleSlider(false);
 
         yield return null;
     }

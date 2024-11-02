@@ -10,7 +10,7 @@ public class Zone : MonoBehaviour
 
     private void Start()
     {
-        _zoneController = GetComponentInParent<ZoneController>();
+        _zoneController = Managers.GamePlay.MainGame.ZoneController;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
