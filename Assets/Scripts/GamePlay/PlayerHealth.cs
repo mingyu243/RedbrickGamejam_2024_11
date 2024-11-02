@@ -25,6 +25,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void InitializeHealth(int Hp)
+    {
+        health = Hp;
+    }
+
     // 데미지를 받는 메서드
     public void TakeDamage(int damage)
     {
@@ -42,6 +47,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("플레이어가 사망했습니다.");
         // 사망 처리 로직 (예: 게임 오버 화면 호출, 애니메이션 재생 등)
-        Destroy(gameObject); // 임시로 플레이어 오브젝트 삭제
+        Animator animator = GetComponent<Animator>();
+        Player player = GetComponent<Player>();
+        player.isLive = false;
+        animator.SetTrigger("Dead");
     }
 }

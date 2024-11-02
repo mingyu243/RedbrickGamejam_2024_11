@@ -58,6 +58,7 @@ public class DataManager : MonoBehaviour
             float attackSpeed = float.Parse(values[1]);
             int hp = int.Parse(values[2]);
             float moveSpeed = float.Parse(values[3]);
+            float attackRange = float.Parse(values[4]);
 
             PlayerData playerData = new PlayerData()
             {
@@ -65,6 +66,7 @@ public class DataManager : MonoBehaviour
                 AttackSpeed = attackSpeed,
                 Hp = hp,
                 MoveSpeed = moveSpeed,
+                AttackRange = attackRange,
             };
             _playerDatas[i] = playerData;
         }

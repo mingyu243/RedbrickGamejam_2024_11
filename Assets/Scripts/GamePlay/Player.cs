@@ -5,24 +5,46 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Vector2 inputVec;
-    public float speed;
-    public float attackRange = 1.5f; // 근접 공격 범위
-    public int attackDamage = 20;    // 공격 데미지
+    public PlayerData playerData;
+    public bool isLive = true;
+    
 
     Rigidbody2D playerRigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    PlayerHealth playerHealth;
 
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
+
+        // DataManager에서 PlayerData를 불러오는 코루틴 시작
+        StartCoroutine(InitializePlayerData());
+    }
+
+    IEnumerator InitializePlayerData()
+    {
+        // DataManager 인스턴스를 찾아 Init 호출 후 PlayerData 설정
+        GameObject managers = GameObject.Find("Managers"); // 부모 오브젝트 찾기
+        DataManager dataManager = managers.GetComponentInChildren<DataManager>(); // 자식에서 DataManager 찾기
+       
+        // DataManager에서 데이터를 초기화할 때까지 대기
+        yield return dataManager.Init();
+
+        // 초기화된 PlayerData의 첫 번째 데이터를 가져오기 (필요에 따라 인덱스를 변경 가능)
+        playerData = dataManager.PlayerDatas[0];
+
+        playerHealth.InitializeHealth(playerData.Hp);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLive) return;
+
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
 
@@ -35,13 +57,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        if (!isLive) return;
+        Vector2 nextVec = inputVec.normalized * playerData.MoveSpeed * Time.fixedDeltaTime;
         //위치 이동
         playerRigid.MovePosition(playerRigid.position + nextVec);
     }
 
     void LateUpdate()
     {
+        if (!isLive) return;
         animator.SetFloat("Speed", inputVec.magnitude);
 
         if(inputVec.x != 0)
@@ -57,7 +81,7 @@ public class Player : MonoBehaviour
         Vector2 attackDir = (mousePos - transform.position).normalized;
 
         // 공격 범위 내의 적 감지
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, attackRange);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, playerData.AttackRange);
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -67,8 +91,8 @@ public class Player : MonoBehaviour
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(attackDamage);
-                    Debug.Log("적에게 " + attackDamage + " 데미지를 주었습니다!");
+                    enemyHealth.TakeDamage(playerData.Attack);
+                    Debug.Log("적에게 " + playerData.Attack + " 데미지를 주었습니다!");
                 }
             }
         }

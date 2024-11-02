@@ -4,23 +4,57 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed; // 이동 속도
     public Rigidbody2D target; // 타겟이 되는 오브젝트 (오브)
 
-    public float attackRange = 1.5f; // 공격 범위
-    public float attackCooldown = 1.5f; // 공격 쿨타임
-    private float lastAttackTime = 0f; // 마지막 공격 시간
+    private float attack;
+    private float attackSpeed;
+    private int hp; // MonsterData에서 가져오는 체력
+    private float moveSpeed;
 
-    bool isLive = true;
-    bool isAttacking = false; // 공격 중 여부
+    private float attackRange = 1.5f;
+    private float attackCooldown = 1.5f;
+    private float lastAttackTime = 0f;
 
-    Rigidbody2D EnemyRigid;
+    public bool isLive = true;
+    private bool isAttacking = false;
+
+    Rigidbody2D enemyRigid;
     SpriteRenderer spriteRenderer;
+    private EnemyHealth enemyHealth;
 
     void Awake()
     {
-        EnemyRigid = GetComponent<Rigidbody2D>();
+        enemyRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // DataManager에서 MonsterData 불러오기
+        StartCoroutine(InitializeMonsterData());
+    }
+
+    IEnumerator InitializeMonsterData()
+    {
+        // DataManager 인스턴스 찾기
+        DataManager dataManager = FindObjectOfType<DataManager>();
+
+        // DataManager의 Init() 호출
+        yield return dataManager.Init();
+
+        // 첫 번째 MonsterData 사용 (필요에 따라 특정 인덱스나 조건으로 변경 가능)
+        MonsterData monsterData = dataManager.MonsterDatas[0];
+
+        // MonsterData 속성 할당
+        attack = monsterData.Attack;
+        attackSpeed = monsterData.AttackSpeed;
+        hp = monsterData.Hp;
+        moveSpeed = monsterData.MoveSpeed;
+
+        // EnemyHealth의 체력을 MonsterData의 Hp로 설정
+        if (enemyHealth != null)
+        {
+            enemyHealth.InitializeHealth(hp);
+        }
+
+        Debug.Log("MonsterData loaded: Attack=" + attack + ", AttackSpeed=" + attackSpeed + ", Hp=" + hp + ", MoveSpeed=" + moveSpeed);
     }
 
     void FixedUpdate()
@@ -31,13 +65,13 @@ public class Enemy : MonoBehaviour
         }
 
         // 공격 중이 아니라면 이동
-        if (!isAttacking)
+        if (!isAttacking || isLive)
         {
             MoveTowardsTarget();
         }
 
         // 몬스터가 오브와 가까운지 확인하여 공격
-        float distanceToTarget = Vector2.Distance(target.position, EnemyRigid.position);
+        float distanceToTarget = Vector2.Distance(target.position, enemyRigid.position);
         if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             Attack();
@@ -47,10 +81,10 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        Vector2 dirVec = target.position - EnemyRigid.position; // 방향 계산
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        EnemyRigid.MovePosition(EnemyRigid.position + nextVec);
-        EnemyRigid.velocity = Vector2.zero;
+        Vector2 dirVec = target.position - enemyRigid.position; // 방향 계산
+        Vector2 nextVec = dirVec.normalized * moveSpeed * Time.fixedDeltaTime;
+        enemyRigid.MovePosition(enemyRigid.position + nextVec);
+        enemyRigid.velocity = Vector2.zero;
     }
 
     void Attack()
@@ -87,6 +121,6 @@ public class Enemy : MonoBehaviour
         }
 
         // 방향에 따라 스프라이트 플립
-        spriteRenderer.flipX = target.position.x > EnemyRigid.position.x ? false : true;
+        spriteRenderer.flipX = target.position.x > enemyRigid.position.x ? false : true;
     }
 }
