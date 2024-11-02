@@ -15,8 +15,7 @@ public class DataManager : MonoBehaviour
     const string ZONE_DATA_G_ID = "1239032604";
 
     // 스프레드 시트에서 읽어온 데이터에서 윗 행을 버림
-    // 1,2번째 행은 설명 적는 위치, 3번째 행은 변수 있는 위치
-    const int DUMMY_COUNT = 3;
+    const int DUMMY_COUNT = 10;
 
     [SerializeField] PlayerData[] _playerDatas;
     [SerializeField] MonsterData[] _monsterDatas;
