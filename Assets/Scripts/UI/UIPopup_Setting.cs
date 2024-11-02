@@ -17,7 +17,7 @@ public class UIPopup_Setting : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        float time = Managers.GamePlay.MainGame.CurrentTime;
+        float time = Managers.GamePlay.MainGame.TimeController.CurrentTime;
         _timeText.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
     }
 

@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
     public MonsterData[] MonsterDatas => _monsterDatas;
     public OrbData[] OrbDatas => _orbDatas;
     public TimeEventData[] TimeEventDatas => _timeEventDatas;
-    public WaveData[] TaveDatas => _waveDatas;
+    public WaveData[] WaveDatas => _waveDatas;
     public ZoneData[] ZoneDatas => _zoneDatas;
 
     public IEnumerator Init()

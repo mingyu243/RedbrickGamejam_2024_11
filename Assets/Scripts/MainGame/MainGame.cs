@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum GameState
 {
@@ -9,7 +8,8 @@ public enum GameState
     Ready,
     Battle,
     Result,
-    End
+    End,
+    Clear,
 }
 
 public enum GameResult
@@ -27,15 +27,17 @@ public class MainGame : MonoBehaviour
     [SerializeField] GameState _gameState;
     [SerializeField] GameResult _gameResult;
     [Space]
-    [SerializeField] float _currentTime;
-    [SerializeField] int _currentWaveId;
-    [Space]
     [SerializeField] Player _player;
+    [Space]
+    [SerializeField] TimeController _timeController;
+    [SerializeField] WaveController _waveController;
+    [SerializeField] MonsterSpawner _monsterSpawner;
 
     public GameState GameState { get => _gameState; set => _gameState = value; }
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
-    public float CurrentTime { get => _currentTime; set => _currentTime = value; }
-    public int CurrentWaveId { get => _currentWaveId; set => _currentWaveId = value; }
+    public TimeController TimeController { get => _timeController; set => _timeController = value; }
+    public WaveController WaveController { get => _waveController; set => _waveController = value; }
+    public MonsterSpawner MonsterSpawner { get => _monsterSpawner; set => _monsterSpawner = value; }
 
     void Awake()
     {
@@ -85,11 +87,6 @@ public class MainGame : MonoBehaviour
         GameResult = gameResult;
     }
 
-    public float GetCurrentTime()
-    {
-        return CurrentTime;
-    }
-
     IEnumerator GameFlow()
     {
         _isPlaying = true;
@@ -106,15 +103,13 @@ public class MainGame : MonoBehaviour
     IEnumerator InitPhase()
     {
         GameState = GameState.Init;
-        GameResult = GameResult.None;
-        CurrentTime = 0;
-        Managers.Ui.Battle.SetTime(CurrentTime);
 
-        // 초기화 로직.
-        // 오브 초기화
-        // 캐릭터 초기화
+        GameResult = GameResult.None;
+
+        TimeController.Init();
+        WaveController.Init();
+
         _player.InitState();
-        // 웨이브 발생 초기화
 
         yield return null;
     }
@@ -133,9 +128,7 @@ public class MainGame : MonoBehaviour
 
         while (GameResult == GameResult.None)
         {
-            CurrentTime += Time.deltaTime;
-            Managers.Ui.Battle.SetTime(CurrentTime);
-
+            TimeController.OnUpdate();
             yield return null;
         }
     }
@@ -173,6 +166,9 @@ public class MainGame : MonoBehaviour
         {
             Managers.Ui.ShowUI(UIType.End);
         }
+
+        MonsterSpawner.Clear();
+
         yield return null;
     }
 }
