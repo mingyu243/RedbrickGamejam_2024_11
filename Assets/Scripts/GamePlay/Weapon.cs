@@ -6,12 +6,10 @@ public class Weapon : MonoBehaviour
 {
     public int damage;
 
-    private void Awake()
+    IEnumerator Start()
     {
-        Init();
-    }
-    public void Init()
-    {
+        yield return new WaitUntil(() => Managers.IsInit);
+
         this.damage = Managers.Data.PlayerDatas[0].Attack;
     }
 

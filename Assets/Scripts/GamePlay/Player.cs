@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     PlayerHealth playerHealth;
+    [SerializeField] WeaponManager weaponManager;
+    public WeaponManager Weapon => weaponManager;
 
     void Awake()
     {
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         //hp = playeraData.Hp;
         //moveSpeed = playeraData.MoveSpeed;
 
+        Weapon.SetWeaponRange(playerData.WeaponRange);
+
         if (playerHealth != null)
         {
             playerHealth.InitializeHealth(playerData.Hp);
@@ -44,11 +48,11 @@ public class Player : MonoBehaviour
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
 
-        // 마우스 왼쪽 버튼 클릭 시 공격
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
+        //// 마우스 왼쪽 버튼 클릭 시 공격
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Attack();
+        //}
     }
 
     private void FixedUpdate()
@@ -77,7 +81,7 @@ public class Player : MonoBehaviour
         Vector2 attackDir = (mousePos - transform.position).normalized;
 
         // 공격 범위 내의 적 감지
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, playerData.AttackRange);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, playerData.WeaponRange);
         animator.SetTrigger("Attack");
 
         foreach (RaycastHit2D hit in hits)

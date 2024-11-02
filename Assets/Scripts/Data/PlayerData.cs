@@ -4,8 +4,7 @@ using System;
 public class PlayerData
 {
     public int Attack;
-    public float AttackSpeed;
     public int Hp;
     public float MoveSpeed;
-    public float AttackRange;
+    public float WeaponRange;
 }

@@ -54,18 +54,16 @@ public class DataManager : MonoBehaviour
             string[] values = row.Split(',');
 
             int attack = int.Parse(values[0]);
-            float attackSpeed = float.Parse(values[1]);
-            int hp = int.Parse(values[2]);
-            float moveSpeed = float.Parse(values[3]);
-            float attackRange = float.Parse(values[4]);
+            int hp = int.Parse(values[1]);
+            float moveSpeed = float.Parse(values[2]);
+            float weaponRange = float.Parse(values[3]);
 
             PlayerData playerData = new PlayerData()
             {
                 Attack = attack,
-                AttackSpeed = attackSpeed,
                 Hp = hp,
                 MoveSpeed = moveSpeed,
-                AttackRange = attackRange,
+                WeaponRange = weaponRange,
             };
             _playerDatas[i] = playerData;
         }
@@ -185,15 +183,15 @@ public class DataManager : MonoBehaviour
             string[] values = row.Split(',');
 
             int id = int.Parse(values[0]);
-            int randMin = int.Parse(values[1]);
-            int randMax = int.Parse(values[2]);
+            int weaponCount = int.Parse(values[1]);
+            float rotationSpeed = float.Parse(values[2]);
             float increasePlayerHpTime = float.Parse(values[3]);
 
             ZoneData data = new ZoneData()
             {
                 Id = id,
-                RandMin = randMin,
-                RandMax = randMax,
+                WeaponCount = weaponCount,
+                RotationSpeed = rotationSpeed,
                 IncreasePlayerHpTime = increasePlayerHpTime
             };
             _zoneDatas[i] = data;

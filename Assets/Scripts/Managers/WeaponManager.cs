@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
 
     public float rotationSpeed;
     public int weaponCount;
+    public float weaponRange; // 반지름
 
     void Start()
     {
@@ -39,8 +40,8 @@ public class WeaponManager : MonoBehaviour
         for (int i = 0; i < weaponCount; i++)
         {
             GameObject weapon = Instantiate(weaponPrefab, transform);
-            float angle = i * Mathf.PI * 2f / weaponCount; // 각도 계산
-            Vector3 weaponPosition = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * 2f; // 반지름 2
+            float angle = i * Mathf.PI * weaponRange / weaponCount; // 각도 계산
+            Vector3 weaponPosition = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * weaponRange;
             weapon.transform.position = player.position + weaponPosition;
             weapon.transform.SetParent(player); // 무기를 플레이어의 자식으로 설정
             weapons.Add(weapon);
@@ -65,6 +66,11 @@ public class WeaponManager : MonoBehaviour
             Destroy(weapon);
         }
         weapons.Clear();
+    }
+
+    public void SetWeaponRange(float range)
+    {
+        weaponRange = range;
     }
 
     // 무기의 개수와 회전 속도를 설정하는 함수

@@ -34,6 +34,6 @@ public class ZoneController : MonoBehaviour
 
         ZoneData zoneData = Managers.Data.ZoneDatas[_stayingZoneIndex];
 
-        // Player 공속 증가 등등
+        player.Weapon.SetWeaponProperties(zoneData.WeaponCount, zoneData.RotationSpeed);
     }
 }
