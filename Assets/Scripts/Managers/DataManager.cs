@@ -36,10 +36,10 @@ public class DataManager : MonoBehaviour
     {
         yield return GoogleSheetsLoader.LoadData(DOC_ID, PLAYER_DATA_G_ID, ParseCSVDataPlayerData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, MONSTER_DATA_G_ID, ParseCSVDataMonsterData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_DATA_G_ID, ParseCSVDataOrbData);
+        /**yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_DATA_G_ID, ParseCSVDataOrbData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, TIME_EVENT_DATA_G_ID, ParseCSVDataTimeEventData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, WAVE_DATA_G_ID, ParseCSVDataWaveData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, ZONE_DATA_G_ID, ParseCSVDataZoneData);
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, ZONE_DATA_G_ID, ParseCSVDataZoneData);**/
     }
 
     private void ParseCSVDataPlayerData(string csvData)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health = 50;
+    public int health = 50; // 기본 체력, MonsterData에 의해 덮어씌워질 예정
     private Animator animator;
     Enemy enemy;
 
@@ -12,6 +12,12 @@ public class EnemyHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
+    }
+
+    // 체력 초기화 메서드
+    public void InitializeHealth(int initialHealth)
+    {
+        health = initialHealth;
     }
 
     public void TakeDamage(int damage)
