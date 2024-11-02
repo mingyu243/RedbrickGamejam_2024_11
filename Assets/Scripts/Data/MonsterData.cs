@@ -4,7 +4,7 @@ using System;
 public class MonsterData
 {
     public int Id;
-    public float Attack;
+    public int Attack;
     public float AttackSpeed;
     public int Hp;
     public float MoveSpeed;

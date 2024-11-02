@@ -12,13 +12,15 @@ public class PlayerHealth : MonoBehaviour
 
     private float lastDamageTime = 0f;
 
+    public GameObject weapon; // 자식 오브젝트인 무기 참조를 위한 변수
+
     private void Update()
     {
         // 오브와의 거리 계산
         float distanceToOrb = Vector2.Distance(transform.position, orb.position);
 
         // 오브가 일정 거리 내에 있으면 체력 감소
-        if (distanceToOrb <= damageRange && Time.time >= lastDamageTime + damageInterval)
+        if (distanceToOrb <= damageRange && Time.time >= lastDamageTime + damageInterval && health > 0)
         {
             TakeDamage(damageAmount);
             lastDamageTime = Time.time; // 마지막 피해 시간을 갱신
@@ -51,5 +53,10 @@ public class PlayerHealth : MonoBehaviour
         Player player = GetComponent<Player>();
         player.isLive = false;
         animator.SetTrigger("Dead");
+
+        if (weapon != null)
+        {
+            weapon.SetActive(false);
+        }
     }
 }

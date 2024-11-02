@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
         // 공격 범위 내의 적 감지
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, playerData.AttackRange);
+        animator.SetTrigger("Attack");
 
         foreach (RaycastHit2D hit in hits)
         {
