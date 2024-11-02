@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage); // 데미지를 전달
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.PlayerAttack);
                 Debug.Log("적에게 " + damage + " 데미지를 입혔습니다!");
             }
         }

@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField] WeaponManager weaponManager;
     public WeaponManager Weapon => weaponManager;
 
+    private float moveSoundCooldown = 0.7f; // 사운드 재생 간격 (초)
+    private float lastMoveSoundTime; // 마지막으로 사운드가 재생된 시간
+
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
@@ -66,6 +69,14 @@ public class Player : MonoBehaviour
         Vector2 nextVec = inputVec.normalized * playerData.MoveSpeed * Time.fixedDeltaTime;
         //위치 이동
         playerRigid.MovePosition(playerRigid.position + nextVec);
+
+
+        // 현재 시간이 마지막 재생 시간 + 쿨다운보다 큰지 확인
+        if (Time.time >= lastMoveSoundTime + moveSoundCooldown && animator.GetFloat("Speed") > 0)
+        {
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Move);
+            lastMoveSoundTime = Time.time; // 마지막 재생 시간을 갱신
+        }
     }
 
     void LateUpdate()

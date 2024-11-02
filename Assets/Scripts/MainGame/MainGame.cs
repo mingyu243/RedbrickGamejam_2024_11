@@ -68,6 +68,8 @@ public class MainGame : MonoBehaviour
             return;
         }
 
+        AudioManager.instance.PlayBgm(true);
+
         StartCoroutine(GameFlow());
     }
 
@@ -88,6 +90,7 @@ public class MainGame : MonoBehaviour
 
     public void ExitGame()
     {
+        AudioManager.instance.PlayBgm(false);
         GameResult = GameResult.Aborted;
     }
 

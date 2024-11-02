@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour
             if (orbHealth != null)
             {
                 orbHealth.TakeDamage(attack); // 오브에 10의 데미지
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.EnemyAttack);
             }
         }
 
