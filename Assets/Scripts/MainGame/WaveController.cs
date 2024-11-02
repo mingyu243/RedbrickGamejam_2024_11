@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class WaveController : MonoBehaviour
 {
@@ -35,8 +36,32 @@ public class WaveController : MonoBehaviour
 
         while (i < data.SpawnCount)
         {
-            // TODO: 가중치 계산
-            Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Common);
+            // 전체 가중치 합산
+            float totalWeight = 0;
+            totalWeight += data.Monster1Weight;
+            totalWeight += data.Monster2Weight;
+            totalWeight += data.Monster3Weight;
+
+            float rand = Random.Range(0, totalWeight);
+
+            // 누적 가중치
+            float accumulatedWeight = 0;
+            accumulatedWeight += data.Monster1Weight;
+            if (rand < accumulatedWeight)
+            {
+                Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Common);
+            }
+            accumulatedWeight += data.Monster2Weight;
+            if (rand < accumulatedWeight)
+            {
+                Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Rare);
+            }
+            accumulatedWeight += data.Monster3Weight;
+            if (rand < accumulatedWeight)
+            {
+                Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Boss);
+            }
+
             i++;
         }
     }

@@ -8,6 +8,14 @@ public class Zone : MonoBehaviour
 
     ZoneController _zoneController;
 
+    [SerializeField] Transform[] _randomSpawnPosTrs;
+
+    public Vector3 GetRandomPosition()
+    {
+        int randIndex = Random.Range(0, _randomSpawnPosTrs.Length);
+        return _randomSpawnPosTrs[randIndex].position;
+    }
+
     private void Start()
     {
         _zoneController = Managers.GamePlay.MainGame.ZoneController;

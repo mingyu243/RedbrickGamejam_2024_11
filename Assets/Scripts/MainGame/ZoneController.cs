@@ -6,9 +6,16 @@ public class ZoneController : MonoBehaviour
 {
     [SerializeField] int _stayingZoneIndex;
 
+    [SerializeField] Zone[] _zones;
+
     public void Init()
     {
         _stayingZoneIndex = -1;
+    }
+
+    public Vector3 GetRandomPosition(int zoneIndex)
+    {
+        return _zones[zoneIndex].GetRandomPosition();
     }
 
     public void OnTriggerStayPlayer(int zoneIndex)
