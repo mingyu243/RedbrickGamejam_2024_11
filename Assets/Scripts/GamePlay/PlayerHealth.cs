@@ -12,7 +12,16 @@ public class PlayerHealth : MonoBehaviour
 
     private float lastDamageTime = 0f;
 
-    public GameObject weapon; // 자식 오브젝트인 무기 참조를 위한 변수
+    private WeaponManager weaponManager;
+    Animator animator;
+    Player player;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        weaponManager = FindObjectOfType<WeaponManager>();
+        player = GetComponent<Player>();
+    }
 
     private void Update()
     {
@@ -49,14 +58,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("플레이어가 사망했습니다.");
         // 사망 처리 로직 (예: 게임 오버 화면 호출, 애니메이션 재생 등)
-        Animator animator = GetComponent<Animator>();
         Player player = GetComponent<Player>();
+        weaponManager.RemoveAllWeapons();
         player.isLive = false;
         animator.SetTrigger("Dead");
-
-        if (weapon != null)
-        {
-            weapon.SetActive(false);
-        }
     }
 }
