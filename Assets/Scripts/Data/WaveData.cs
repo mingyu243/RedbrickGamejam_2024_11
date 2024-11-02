@@ -8,6 +8,4 @@ public class WaveData
     public int Monster2Weight;
     public int Monster3Weight;
     public int SpawnCount;
-
-    public int SumWeight => (Monster1Weight + Monster2Weight + Monster3Weight);
 }

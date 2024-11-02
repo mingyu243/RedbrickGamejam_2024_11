@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public int damageAmount = 5; // 감소할 체력 양
     public float damageInterval = 1.0f; // 체력 감소 간격 (초)
 
-    private float lastDamageTime = 0f;
-
     private WeaponManager weaponManager;
     Animator animator;
     Player player;
@@ -21,19 +19,6 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         weaponManager = FindObjectOfType<WeaponManager>();
         player = GetComponent<Player>();
-    }
-
-    private void Update()
-    {
-        // 오브와의 거리 계산
-        float distanceToOrb = Vector2.Distance(transform.position, orb.position);
-
-        // 오브가 일정 거리 내에 있으면 체력 감소
-        if (distanceToOrb <= damageRange && Time.time >= lastDamageTime + damageInterval && health > 0)
-        {
-            TakeDamage(damageAmount);
-            lastDamageTime = Time.time; // 마지막 피해 시간을 갱신
-        }
     }
 
     public void InitializeHealth(int Hp)
