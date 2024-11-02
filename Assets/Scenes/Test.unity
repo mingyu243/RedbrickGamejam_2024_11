@@ -8420,6 +8420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7549830963028804806, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
+      propertyPath: orb
+      value: 
+      objectReference: {fileID: 1912661041}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
