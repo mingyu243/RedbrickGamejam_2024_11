@@ -1,6 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
+public enum GameState
+{
+    None,
+    Init,
+    Ready,
+    Battle,
+    Result,
+    End
+}
+
 public enum GameResult
 {
     None,
@@ -12,14 +22,22 @@ public enum GameResult
 public class MainGame : MonoBehaviour
 {
     [SerializeField] bool _isPlaying;
+    [Space]
+    [SerializeField] GameState _gameState;
     [SerializeField] GameResult _gameResult;
     [Space]
-    [SerializeField] Timer _timer;
+    [SerializeField] float _currentTime;
+    [SerializeField] int _currentWaveId;
+
+    public GameState GameState { get => _gameState; set => _gameState = value; }
+    public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
+    public float CurrentTime { get => _currentTime; set => _currentTime = value; }
+    public int CurrentWaveId { get => _currentWaveId; set => _currentWaveId = value; }
 
     void Awake()
     {
         _isPlaying = false;
-        _gameResult = GameResult.None;
+        GameResult = GameResult.None;
     }
 
     IEnumerator Start()
@@ -39,6 +57,21 @@ public class MainGame : MonoBehaviour
         StartCoroutine(GameFlow());
     }
 
+    public void RestartGame()
+    {
+        StartCoroutine(DoRestart());
+
+        IEnumerator DoRestart()
+        {
+            // 기존 게임 끝내기
+            GameResult = GameResult.Aborted;
+            yield return new WaitUntil(() => (_isPlaying == false));
+
+            // 게임 시작
+            StartGame();
+        }
+    }
+
     public void ExitGame()
     {
         SetResult(GameResult.Aborted);
@@ -46,7 +79,12 @@ public class MainGame : MonoBehaviour
 
     public void SetResult(GameResult gameResult)
     {
-        _gameResult = gameResult;
+        GameResult = gameResult;
+    }
+
+    public float GetCurrentTime()
+    {
+        return CurrentTime;
     }
 
     IEnumerator GameFlow()
@@ -64,8 +102,10 @@ public class MainGame : MonoBehaviour
 
     IEnumerator InitPhase()
     {
-        _gameResult = GameResult.None;
-        _timer.ResetTimer();
+        GameState = GameState.Init;
+        GameResult = GameResult.None;
+        CurrentTime = 0;
+        Managers.Ui.Battle.SetTime(CurrentTime);
 
         // 초기화 로직.
         // 오브 초기화
@@ -77,36 +117,58 @@ public class MainGame : MonoBehaviour
 
     IEnumerator ReadyPhase()
     {
+        GameState = GameState.Ready;
+
         Managers.Ui.ShowUI(UIType.Battle);
         yield return null;
     }
 
     IEnumerator BattlePhase()
     {
-        _timer.Play();
+        GameState = GameState.Battle;
 
-        yield return new WaitUntil(() => _gameResult != GameResult.None);
+        while (GameResult == GameResult.None)
+        {
+            CurrentTime += Time.deltaTime;
+            Managers.Ui.Battle.SetTime(CurrentTime);
 
-        _timer.Stop();
+            yield return null;
+        }
     }
 
     IEnumerator ResultPhase()
     {
+        GameState = GameState.Result;
+
         // 배틀 결과 연출.
-        switch (_gameResult)
+        switch (GameResult)
         {
             case GameResult.None: break;
-            case GameResult.OrbDeath: Debug.Log("오브 죽음"); break;
-            case GameResult.PlayerDeath: Debug.Log("플레이어 죽음"); break;
+            case GameResult.OrbDeath:
+                {
+                    Debug.Log("오브 죽음");
+                    yield return new WaitForSeconds(2);
+                }
+                break;
+            case GameResult.PlayerDeath:
+                {
+                    Debug.Log("플레이어 죽음");
+                    yield return new WaitForSeconds(2);
+                }
+                break;
             case GameResult.Aborted: break;
         }
 
-        yield return new WaitForSeconds(2);
     }
 
     IEnumerator EndPhase()
     {
-        Managers.Ui.ShowUI(UIType.End);
+        GameState = GameState.End;
+
+        if (GameResult != GameResult.Aborted)
+        {
+            Managers.Ui.ShowUI(UIType.End);
+        }
         yield return null;
     }
 }

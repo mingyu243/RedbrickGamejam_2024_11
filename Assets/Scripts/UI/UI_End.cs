@@ -16,7 +16,7 @@ public class UI_End : MonoBehaviour
 
     public void OnClickRestartButton()
     {
-        Managers.GamePlay.StartGame();
+        Managers.GamePlay.MainGame.RestartGame();
     }
 
     public void OnClickExitButton()
