@@ -35,5 +35,6 @@ public class ZoneController : MonoBehaviour
         ZoneData zoneData = Managers.Data.ZoneDatas[_stayingZoneIndex];
 
         player.Weapon.SetWeaponProperties(zoneData.WeaponCount, zoneData.RotationSpeed);
+        player.PlayerMental.ChangeRate = zoneData.PlayerMentalChangeRate;
     }
 }

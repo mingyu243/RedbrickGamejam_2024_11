@@ -39,12 +39,14 @@ public class PlayerHealth : MonoBehaviour
     public void InitializeHealth(int Hp)
     {
         health = Hp;
+        Managers.Ui.Battle.SetPlayerHp(health);
     }
 
     // 데미지를 받는 메서드
     public void TakeDamage(int damage)
     {
         health -= damage; // 데미지만큼 체력 감소
+        Managers.Ui.Battle.SetPlayerHp(health);
         Debug.Log("플레이어의 현재 체력: " + health);
 
         // 체력이 0 이하가 되면 죽음 처리

@@ -9,6 +9,7 @@ public class UI_Battle : MonoBehaviour
 {
     [SerializeField] TMP_Text _timeText;
     [SerializeField] TMP_Text _waveNumberText;
+    [SerializeField] TMP_Text _playerHpText;
     [Space]
     [SerializeField] GameObject _waveAlert;
     [SerializeField] TMP_Text _waveAlertNumberText;
@@ -42,6 +43,11 @@ public class UI_Battle : MonoBehaviour
     public void OnClickSetting()
     {
         Managers.Ui.SetVisibleSettingPopup(true);
+    }
+
+    public void SetPlayerHp(int hp)
+    {
+        _playerHpText.text = hp.ToString();
     }
 
     public void SetTime(float time)

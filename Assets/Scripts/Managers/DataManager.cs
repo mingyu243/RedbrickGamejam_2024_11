@@ -185,14 +185,14 @@ public class DataManager : MonoBehaviour
             int id = int.Parse(values[0]);
             int weaponCount = int.Parse(values[1]);
             float rotationSpeed = float.Parse(values[2]);
-            float increasePlayerHpTime = float.Parse(values[3]);
+            float playerMentalChangeRate = float.Parse(values[3]);
 
             ZoneData data = new ZoneData()
             {
                 Id = id,
                 WeaponCount = weaponCount,
                 RotationSpeed = rotationSpeed,
-                IncreasePlayerHpTime = increasePlayerHpTime
+                PlayerMentalChangeRate = playerMentalChangeRate
             };
             _zoneDatas[i] = data;
         }

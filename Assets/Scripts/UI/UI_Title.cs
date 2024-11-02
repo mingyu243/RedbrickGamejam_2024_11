@@ -16,11 +16,15 @@ public class UI_Title : MonoBehaviour
 
     public void OnClickStartButton()
     {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.ButtonClick);
+
         Managers.GamePlay.MainGame.StartGame();
     }
 
     public void OnClickExitButton()
     {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.ButtonClick);
+
         Managers.Application.Exit();
     }
 }
