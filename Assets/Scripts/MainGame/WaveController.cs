@@ -15,6 +15,7 @@ public class WaveController : MonoBehaviour
 
     public void StartWave(int waveId)
     {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.WaveStart);
         Debug.Log($"웨이브 실행 {waveId}");
         _currentWaveId = waveId;
 

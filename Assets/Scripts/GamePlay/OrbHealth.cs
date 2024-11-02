@@ -61,6 +61,7 @@ public class OrbHealth : MonoBehaviour
     {
         SetHealth(health - damage); // 데미지만큼 체력 감소
         Debug.Log("오브의 현재 체력: " + health);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.OrbHit);
 
         // 체력이 0 이하가 되면 파괴 처리
         if (health <= 0)

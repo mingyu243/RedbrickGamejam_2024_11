@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
         Battle.gameObject.SetActive(false);
         End.gameObject.SetActive(false);
 
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.ButtonClick);
         switch (uiType)
         {
             case UIType.Title: Title.gameObject.SetActive(true); break;
