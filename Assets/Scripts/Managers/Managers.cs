@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
@@ -15,17 +16,20 @@ public class Managers : MonoBehaviour
     [SerializeField] UIManager _ui;
     [SerializeField] ApplicationManager _application;
     [SerializeField] GamePlayManager _gamePlay;
+    [SerializeField] DataManager _data;
 
     public static UIManager Ui => _instance._ui;
     public static ApplicationManager Application => _instance._application;
     public static GamePlayManager GamePlay => _instance._gamePlay;
+    public static DataManager Data => _instance._data;
 
 
-    void Start()
+    IEnumerator Start()
     {
         _isInit = false;
 
         // 초기화
+        yield return _data.Init();
 
         _isInit = true;
     }
