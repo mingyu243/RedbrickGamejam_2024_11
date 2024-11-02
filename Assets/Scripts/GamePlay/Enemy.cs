@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public Rigidbody2D target; // 타겟이 되는 오브젝트 (오브)
 
-    [SerializeField] private float attack;
+    [SerializeField] private int attack;
     [SerializeField] private float attackSpeed;
     [SerializeField] private int hp; // MonsterData에서 가져오는 체력
     [SerializeField] private float moveSpeed;
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         }
 
         // 공격 중이 아니라면 이동
-        if (!isAttacking || isLive)
+        if (!isAttacking)
         {
             MoveTowardsTarget();
         }
@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
             OrbHealth orbHealth = target.GetComponent<OrbHealth>();
             if (orbHealth != null)
             {
-                orbHealth.TakeDamage(10); // 오브에 10의 데미지
+                orbHealth.TakeDamage(attack); // 오브에 10의 데미지
             }
         }
 
