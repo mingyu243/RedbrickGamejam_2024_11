@@ -207,7 +207,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 99
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -269,10 +269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c1c78370c93214ab1a9d8d59166f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  monsterType: 0
   target: {fileID: 0}
-  attackRange: 1.5
-  attackCooldown: 1.5
+  attack: 0
+  attackSpeed: 0
+  hp: 0
+  moveSpeed: 0
   isLive: 1
 --- !u!114 &2373175798806227811
 MonoBehaviour:

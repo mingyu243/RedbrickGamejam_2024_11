@@ -22,12 +22,14 @@ public class Enemy : MonoBehaviour
     Rigidbody2D enemyRigid;
     SpriteRenderer spriteRenderer;
     private EnemyHealth enemyHealth;
+    Animator animator;
 
     void Awake()
     {
         enemyRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHealth = GetComponent<EnemyHealth>();
+        animator = GetComponent<Animator>();
     }
 
     public void InitState()
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isLive || target == null) // target이 null인지 확인
+        if (!isLive || target == null || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit")) // target이 null인지 확인 || 피격중이 아니라면 이동
         {
             return;
         }
@@ -58,7 +60,10 @@ public class Enemy : MonoBehaviour
         // 공격 중이 아니라면 이동
         if (!isAttacking)
         {
-            MoveTowardsTarget();
+            Vector2 dirVec = target.position - enemyRigid.position; // 방향 계산
+            Vector2 nextVec = dirVec.normalized * moveSpeed * Time.fixedDeltaTime;
+            enemyRigid.MovePosition(enemyRigid.position + nextVec);
+            enemyRigid.velocity = Vector2.zero;
         }
 
         // 몬스터가 오브와 가까운지 확인하여 공격
@@ -68,14 +73,6 @@ public class Enemy : MonoBehaviour
             Attack();
             lastAttackTime = Time.time; // 공격 시간 갱신
         }
-    }
-
-    void MoveTowardsTarget()
-    {
-        Vector2 dirVec = target.position - enemyRigid.position; // 방향 계산
-        Vector2 nextVec = dirVec.normalized * moveSpeed * Time.fixedDeltaTime;
-        enemyRigid.MovePosition(enemyRigid.position + nextVec);
-        enemyRigid.velocity = Vector2.zero;
     }
 
     void Attack()
