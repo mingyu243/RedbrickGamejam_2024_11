@@ -44,6 +44,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetVisibleSettingPopup(bool isVisible)
+    {
+        _setting.SetActive(isVisible);
+    }
+
     public void ToggleSettingPopup()
     {
         _setting.SetActive(!_setting.activeSelf);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,25 +11,32 @@ public class UI_Battle : MonoBehaviour
     [Space]
     [SerializeField] Button _testOrbDeathButton;
     [SerializeField] Button _testPlayerDeathButton;
+    [SerializeField] Button _settingButton;
 
     void Start()
     {
         _testOrbDeathButton.onClick.AddListener(OnClickTestOrbDeath);
         _testPlayerDeathButton.onClick.AddListener(OnClickTestPlayerDeath);
+        _settingButton.onClick.AddListener(OnClickSetting);
     }
 
     public void OnClickTestOrbDeath()
     {
-        Managers.GamePlay.SetResult(GameResult.OrbDeath);
+        Managers.GamePlay.MainGame.GameResult = GameResult.OrbDeath;
     }
 
     public void OnClickTestPlayerDeath()
     {
-        Managers.GamePlay.SetResult(GameResult.PlayerDeath);
+        Managers.GamePlay.MainGame.GameResult = GameResult.PlayerDeath;
+    }
+
+    public void OnClickSetting()
+    {
+        Managers.Ui.SetVisibleSettingPopup(true);
     }
 
     public void SetTime(float time)
     {
-        _timeText.text = time.ToString();
+        _timeText.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
     }
 }

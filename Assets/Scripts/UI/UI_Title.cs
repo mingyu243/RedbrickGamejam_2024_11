@@ -16,7 +16,7 @@ public class UI_Title : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        Managers.GamePlay.StartGame();
+        Managers.GamePlay.MainGame.StartGame();
     }
 
     public void OnClickExitButton()
