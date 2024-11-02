@@ -6691,8 +6691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monster1Prefab: {fileID: 8437478808365503650, guid: ca163d85487a27440bd4fe44b6f06a2c, type: 3}
-  _monster2Prefab: {fileID: 8437478808365503650, guid: ca163d85487a27440bd4fe44b6f06a2c, type: 3}
-  _monster3Prefab: {fileID: 8437478808365503650, guid: ca163d85487a27440bd4fe44b6f06a2c, type: 3}
+  _monster2Prefab: {fileID: 8065282737304144783, guid: ea41b75b8e72a384fa7cd3086a822798, type: 3}
+  _monster3Prefab: {fileID: 8437478808365503650, guid: c8ac22c04c98a5f4ba510ccb139e0972, type: 3}
   _spawnPositionTr: {fileID: 1201089240}
 --- !u!1 &221418558
 GameObject:
@@ -7159,6 +7159,7 @@ GameObject:
   - component: {fileID: 452115746}
   - component: {fileID: 452115745}
   - component: {fileID: 452115744}
+  - component: {fileID: 452115748}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -7179,9 +7180,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 816450458}
   - {fileID: 1063776909}
   - {fileID: 1381329940}
-  - {fileID: 816450458}
   m_Father: {fileID: 1926749465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &452115744
@@ -7196,6 +7197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7d488f2e325c14d8960a5659cedcd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blue: {fileID: 816450457}
+  _yellow: {fileID: 1381329939}
+  _red: {fileID: 1063776908}
+  maxHealth: 100
   health: 100
 --- !u!58 &452115745
 CircleCollider2D:
@@ -7311,6 +7316,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &452115748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452115742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640b6198be7c2144299ccb925ace4c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &472516672
 GameObject:
   m_ObjectHideFlags: 0
@@ -9365,6 +9382,7 @@ MonoBehaviour:
   _gameState: 0
   _gameResult: 0
   _player: {fileID: 1542771193}
+  _orb: {fileID: 452115748}
   _timeController: {fileID: 2127930948}
   _waveController: {fileID: 725093977}
   _monsterSpawner: {fileID: 185328053}

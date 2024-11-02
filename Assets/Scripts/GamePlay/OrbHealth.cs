@@ -4,12 +4,55 @@ using UnityEngine;
 
 public class OrbHealth : MonoBehaviour
 {
-    public int health = 100; // 오브의 초기 체력
+    [SerializeField] GameObject _blue; // 60 ~ 100%
+    [SerializeField] GameObject _yellow; // 30 ~ 60%
+    [SerializeField] GameObject _red; // 0 ~ 30%
+    [Space]
+    public int maxHealth = 100; // 초기 체력
+    public int health = 100; // 현재 체력
+
+    private void Start()
+    {
+        _blue.SetActive(true);
+        _yellow.SetActive(false);
+        _red.SetActive(false);
+    }
+
+    public void SetMaxHealth(int value)
+    {
+        maxHealth = value;
+    }
+    public void SetHealth(int value)
+    {
+        health = value;
+
+        // 비율에 따른 모습 변화
+        float ratio = (float)health / (float)maxHealth;
+        ratio *= 100;
+        if (ratio >= 60)
+        {
+            _blue.SetActive(true);
+            _yellow.SetActive(false);
+            _red.SetActive(false);
+        }
+        else if (ratio >= 30)
+        {
+            _blue.SetActive(false);
+            _yellow.SetActive(true);
+            _red.SetActive(false);
+        }
+        else
+        {
+            _blue.SetActive(false);
+            _yellow.SetActive(false);
+            _red.SetActive(true);
+        }
+    }
 
     // 데미지를 받는 메서드
     public void TakeDamage(int damage)
     {
-        health -= damage; // 데미지만큼 체력 감소
+        SetHealth(health - damage); // 데미지만큼 체력 감소
         Debug.Log("오브의 현재 체력: " + health);
 
         // 체력이 0 이하가 되면 파괴 처리
@@ -22,8 +65,9 @@ public class OrbHealth : MonoBehaviour
     // 오브가 파괴되었을 때의 처리
     void Die()
     {
-        Debug.Log("오브가 파괴되었습니다!");
-        Destroy(gameObject); // 오브 오브젝트 삭제
+        Managers.GamePlay.MainGame.GameResult = GameResult.OrbDeath;
+
+        // TODO: 오브 파괴 연출.
     }
 }
 

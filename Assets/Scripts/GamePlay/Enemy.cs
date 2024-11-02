@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] MonsterType monsterType;
     public Rigidbody2D target; // 타겟이 되는 오브젝트 (오브)
 
     [SerializeField] private int attack;
@@ -26,11 +27,12 @@ public class Enemy : MonoBehaviour
     {
         enemyRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     public void InitState()
     {
-        MonsterData monsterData = Managers.Data.MonsterDatas[0];
+        MonsterData monsterData = Managers.Data.MonsterDatas[(int)monsterType];
 
         attack = monsterData.Attack;
         attackSpeed = monsterData.AttackSpeed;
@@ -42,6 +44,8 @@ public class Enemy : MonoBehaviour
         {
             enemyHealth.InitializeHealth(hp);
         }
+
+        target = Managers.GamePlay.MainGame.Orb.Rb;
     }
 
     void FixedUpdate()

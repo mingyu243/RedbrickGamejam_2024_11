@@ -28,6 +28,7 @@ public class MainGame : MonoBehaviour
     [SerializeField] GameResult _gameResult;
     [Space]
     [SerializeField] Player _player;
+    [SerializeField] Orb _orb;
     [Space]
     [SerializeField] TimeController _timeController;
     [SerializeField] WaveController _waveController;
@@ -35,9 +36,11 @@ public class MainGame : MonoBehaviour
 
     public GameState GameState { get => _gameState; set => _gameState = value; }
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
-    public TimeController TimeController { get => _timeController; set => _timeController = value; }
-    public WaveController WaveController { get => _waveController; set => _waveController = value; }
-    public MonsterSpawner MonsterSpawner { get => _monsterSpawner; set => _monsterSpawner = value; }
+    public TimeController TimeController => _timeController;
+    public WaveController WaveController => _waveController;
+    public MonsterSpawner MonsterSpawner => _monsterSpawner;
+    public Player Player => _player;
+    public Orb Orb => _orb;
 
     void Awake()
     {
@@ -109,7 +112,8 @@ public class MainGame : MonoBehaviour
         TimeController.Init();
         WaveController.Init();
 
-        _player.InitState();
+        Player.InitState();
+        Orb.InitState();
 
         yield return null;
     }
