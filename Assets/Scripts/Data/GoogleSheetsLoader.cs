@@ -23,7 +23,6 @@ public class GoogleSheetsLoader : MonoBehaviour
             }
             else
             {
-                Debug.Log(request.downloadHandler.text);
                 callback?.Invoke(request.downloadHandler.text);
             }
         }

@@ -64,8 +64,6 @@ public class MainGame : MonoBehaviour
 
     IEnumerator InitPhase()
     {
-        Debug.Log("StartPhase");
-
         _gameResult = GameResult.None;
         _timer.ResetTimer();
 
@@ -79,15 +77,12 @@ public class MainGame : MonoBehaviour
 
     IEnumerator ReadyPhase()
     {
-        Debug.Log("ReadyPhase");
         Managers.Ui.ShowUI(UIType.Battle);
         yield return null;
     }
 
     IEnumerator BattlePhase()
     {
-        Debug.Log("BattlePhase");
-
         _timer.Play();
 
         yield return new WaitUntil(() => _gameResult != GameResult.None);
@@ -97,8 +92,6 @@ public class MainGame : MonoBehaviour
 
     IEnumerator ResultPhase()
     {
-        Debug.Log("ResultPhase");
-
         // 배틀 결과 연출.
         switch (_gameResult)
         {
