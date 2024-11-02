@@ -62,5 +62,7 @@ public class PlayerHealth : MonoBehaviour
         weaponManager.RemoveAllWeapons();
         player.isLive = false;
         animator.SetTrigger("Dead");
+
+        Managers.GamePlay.MainGame.GameResult = GameResult.PlayerDeath;
     }
 }

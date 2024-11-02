@@ -88,12 +88,7 @@ public class MainGame : MonoBehaviour
 
     public void ExitGame()
     {
-        SetResult(GameResult.Aborted);
-    }
-
-    public void SetResult(GameResult gameResult)
-    {
-        GameResult = gameResult;
+        GameResult = GameResult.Aborted;
     }
 
     IEnumerator GameFlow()
