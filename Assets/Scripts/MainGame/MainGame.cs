@@ -33,6 +33,7 @@ public class MainGame : MonoBehaviour
     [SerializeField] TimeController _timeController;
     [SerializeField] WaveController _waveController;
     [SerializeField] MonsterSpawner _monsterSpawner;
+    [SerializeField] Transform _playerSpawnPositionTr;
 
     public GameState GameState { get => _gameState; set => _gameState = value; }
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
@@ -50,6 +51,8 @@ public class MainGame : MonoBehaviour
 
     IEnumerator Start()
     {
+        Player.transform.position = _playerSpawnPositionTr.position;
+
         yield return new WaitUntil(() => Managers.IsInit);
 
         Managers.Ui.ShowUI(UIType.Title);
@@ -113,6 +116,7 @@ public class MainGame : MonoBehaviour
         WaveController.Init();
 
         Player.InitState();
+        Player.transform.position = _playerSpawnPositionTr.position;
         Orb.InitState();
 
         yield return null;

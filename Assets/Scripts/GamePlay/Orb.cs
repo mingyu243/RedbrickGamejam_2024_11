@@ -21,5 +21,7 @@ public class Orb : MonoBehaviour
 
         orbHealth.SetMaxHealth(data.Hp);
         orbHealth.SetHealth(data.Hp);
+
+        orbHealth.Init();
     }
 }

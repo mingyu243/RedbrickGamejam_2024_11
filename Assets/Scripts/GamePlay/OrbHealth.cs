@@ -7,15 +7,22 @@ public class OrbHealth : MonoBehaviour
     [SerializeField] GameObject _blue; // 60 ~ 100%
     [SerializeField] GameObject _yellow; // 30 ~ 60%
     [SerializeField] GameObject _red; // 0 ~ 30%
+    [SerializeField] GameObject _destroy;
     [Space]
     public int maxHealth = 100; // 초기 체력
     public int health = 100; // 현재 체력
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         _blue.SetActive(true);
         _yellow.SetActive(false);
         _red.SetActive(false);
+        _destroy.SetActive(false);
     }
 
     public void SetMaxHealth(int value)
@@ -67,7 +74,8 @@ public class OrbHealth : MonoBehaviour
     {
         Managers.GamePlay.MainGame.GameResult = GameResult.OrbDeath;
 
-        // TODO: 오브 파괴 연출.
+        _red.SetActive(false);
+        _destroy.SetActive(true);
     }
 }
 
