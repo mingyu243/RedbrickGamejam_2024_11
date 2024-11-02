@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public PlayerData playerData;
     public bool isLive = true;
     
-
     Rigidbody2D playerRigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
@@ -20,24 +19,21 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
-
-        // DataManager에서 PlayerData를 불러오는 코루틴 시작
-        StartCoroutine(InitializePlayerData());
     }
 
-    IEnumerator InitializePlayerData()
+    public void InitState()
     {
-        // DataManager 인스턴스를 찾아 Init 호출 후 PlayerData 설정
-        GameObject managers = GameObject.Find("Managers"); // 부모 오브젝트 찾기
-        DataManager dataManager = managers.GetComponentInChildren<DataManager>(); // 자식에서 DataManager 찾기
-       
-        // DataManager에서 데이터를 초기화할 때까지 대기
-        yield return dataManager.Init();
+        playerData = Managers.Data.PlayerDatas[0];
 
-        // 초기화된 PlayerData의 첫 번째 데이터를 가져오기 (필요에 따라 인덱스를 변경 가능)
-        playerData = dataManager.PlayerDatas[0];
+        //attack = playeraData.Attack;
+        //attackSpeed = playeraData.AttackSpeed;
+        //hp = playeraData.Hp;
+        //moveSpeed = playeraData.MoveSpeed;
 
-        playerHealth.InitializeHealth(playerData.Hp);
+        if (playerHealth != null)
+        {
+            playerHealth.InitializeHealth(playerData.Hp);
+        }
     }
 
     // Update is called once per frame

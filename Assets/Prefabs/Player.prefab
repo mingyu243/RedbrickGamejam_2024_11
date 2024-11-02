@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a94a8cfbd9e4e44f9c859de991e7fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriter: {fileID: 0}
+  spriter: {fileID: 4470701683778670459}
   isLeft: 1
 --- !u!1 &7427911879550815080
 GameObject:
