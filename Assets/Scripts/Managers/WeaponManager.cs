@@ -9,14 +9,16 @@ public class WeaponManager : MonoBehaviour
     private List<GameObject> weapons = new List<GameObject>();
 
     public float rotationSpeed;
-    public int weaponCount;
-    public float weaponRange; // 반지름
+    int weaponCount = 4;
+    float weaponRange = 2; // 반지름
 
     private int previousWeaponCount = -1; // 이전 무기 개수 기록
 
-    void Start()
+    IEnumerator Start()
     {
-        InitializeWeapons();
+        yield return new WaitUntil(() => Managers.IsInit);
+
+        Managers.GamePlay.MainGame.ZoneController.EffectPlayer();
     }
 
     void Update()

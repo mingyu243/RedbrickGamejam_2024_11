@@ -40840,14 +40840,6 @@ PrefabInstance:
       propertyPath: orb
       value: 
       objectReference: {fileID: 452115743}
-    - target: {fileID: 9061394844936204100, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061394844936204100, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
