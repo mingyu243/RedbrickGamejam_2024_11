@@ -6,10 +6,10 @@ public class Enemy : MonoBehaviour
 {
     public Rigidbody2D target; // 타겟이 되는 오브젝트 (오브)
 
-    private float attack;
-    private float attackSpeed;
-    private int hp; // MonsterData에서 가져오는 체력
-    private float moveSpeed;
+    [SerializeField] private float attack;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private int hp; // MonsterData에서 가져오는 체력
+    [SerializeField] private float moveSpeed;
 
     private float attackRange = 1.5f;
     private float attackCooldown = 1.5f;
@@ -26,23 +26,12 @@ public class Enemy : MonoBehaviour
     {
         enemyRigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // DataManager에서 MonsterData 불러오기
-        StartCoroutine(InitializeMonsterData());
     }
 
-    IEnumerator InitializeMonsterData()
+    public void InitState()
     {
-        // DataManager 인스턴스 찾기
-        DataManager dataManager = FindObjectOfType<DataManager>();
+        MonsterData monsterData = Managers.Data.MonsterDatas[0];
 
-        // DataManager의 Init() 호출
-        yield return dataManager.Init();
-
-        // 첫 번째 MonsterData 사용 (필요에 따라 특정 인덱스나 조건으로 변경 가능)
-        MonsterData monsterData = dataManager.MonsterDatas[0];
-
-        // MonsterData 속성 할당
         attack = monsterData.Attack;
         attackSpeed = monsterData.AttackSpeed;
         hp = monsterData.Hp;
@@ -53,8 +42,6 @@ public class Enemy : MonoBehaviour
         {
             enemyHealth.InitializeHealth(hp);
         }
-
-        Debug.Log("MonsterData loaded: Attack=" + attack + ", AttackSpeed=" + attackSpeed + ", Hp=" + hp + ", MoveSpeed=" + moveSpeed);
     }
 
     void FixedUpdate()

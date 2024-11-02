@@ -29,8 +29,7 @@ public class Managers : MonoBehaviour
         _isInit = false;
 
         // 초기화
-        //yield return _data.Init();
-        yield return null;
+        yield return _data.Init();
 
         _isInit = true;
     }

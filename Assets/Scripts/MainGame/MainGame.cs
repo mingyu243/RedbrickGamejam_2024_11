@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum GameState
 {
@@ -28,6 +29,8 @@ public class MainGame : MonoBehaviour
     [Space]
     [SerializeField] float _currentTime;
     [SerializeField] int _currentWaveId;
+    [Space]
+    [SerializeField] Player _player;
 
     public GameState GameState { get => _gameState; set => _gameState = value; }
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
@@ -110,6 +113,7 @@ public class MainGame : MonoBehaviour
         // 초기화 로직.
         // 오브 초기화
         // 캐릭터 초기화
+        _player.InitState();
         // 웨이브 발생 초기화
 
         yield return null;
