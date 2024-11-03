@@ -11,6 +11,8 @@ public class PlayerMental : MonoBehaviour
     float _changeRate;
 
     [SerializeField] Slider _mentalSlider;
+    [SerializeField] GameObject _hpPlusAnimationObj;
+    [SerializeField] GameObject _hpMinusAnimationObj;
 
     private void Start()
     {
@@ -31,6 +33,9 @@ public class PlayerMental : MonoBehaviour
 
         SetVisibleSlider(false);
         IsOn = false;
+
+        _hpPlusAnimationObj.SetActive(false);
+        _hpMinusAnimationObj.SetActive(false);
     }
 
     public void ResetValue()
@@ -53,12 +58,16 @@ public class PlayerMental : MonoBehaviour
         {
             ResetValue();
             Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(+1);
+            _hpMinusAnimationObj.SetActive(false);
+            _hpMinusAnimationObj.SetActive(true);
         }
 
         if (_value >= 100)
         {
             ResetValue();
             Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(-1);
+            _hpPlusAnimationObj.SetActive(false);
+            _hpPlusAnimationObj.SetActive(true);
         }
     }
 }
