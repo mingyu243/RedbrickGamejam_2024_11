@@ -56,12 +56,14 @@ public class DataManager : MonoBehaviour
             int attack = int.Parse(values[0]);
             int hp = int.Parse(values[1]);
             float moveSpeed = float.Parse(values[2]);
+            float gameTimeSpeed = float.Parse(values[3]);
 
             PlayerData playerData = new PlayerData()
             {
                 Attack = attack,
                 Hp = hp,
                 MoveSpeed = moveSpeed,
+                GameTimeSpeed = gameTimeSpeed,
             };
             _playerDatas[i] = playerData;
         }

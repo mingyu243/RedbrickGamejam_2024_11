@@ -11,6 +11,7 @@ public class PlayerMental : MonoBehaviour
     float _changeRate;
 
     [SerializeField] Slider _mentalSlider;
+    [SerializeField] Image _mentalSliderFill;
     [SerializeField] GameObject _hpPlusAnimationObj;
     [SerializeField] GameObject _hpMinusAnimationObj;
 
@@ -34,6 +35,8 @@ public class PlayerMental : MonoBehaviour
         SetVisibleSlider(false);
         IsOn = false;
 
+        _mentalSliderFill.color = plusColor;
+
         _hpPlusAnimationObj.SetActive(false);
         _hpMinusAnimationObj.SetActive(false);
     }
@@ -44,11 +47,23 @@ public class PlayerMental : MonoBehaviour
         _mentalSlider.value = _value;
     }
 
+    Color plusColor = new Color(1, 1, 1);
+    Color minusColor = new Color(127 / 255f, 0, 207 / 255f);
+
     public void Update()
     {
         if (_isOn == false)
         {
             return;
+        }
+
+        if (ChangeRate >= 0)
+        {
+            _mentalSliderFill.color = plusColor;
+        }
+        else
+        {
+            _mentalSliderFill.color = minusColor;
         }
 
         _value += Time.deltaTime * ChangeRate;

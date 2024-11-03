@@ -10,6 +10,13 @@ public class TimeController : MonoBehaviour
 
     public float CurrentTime => _currentTime;
 
+    IEnumerator Start()
+    {
+        yield return new WaitUntil(() => Managers.IsInit);
+
+        Time.timeScale = Managers.Data.PlayerDatas[0].GameTimeSpeed;
+    }
+
     public void Init()
     {
         _currTimeEventIndex = 0;

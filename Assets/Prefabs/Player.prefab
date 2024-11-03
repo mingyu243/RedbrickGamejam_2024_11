@@ -881,7 +881,7 @@ MonoBehaviour:
     Attack: 0
     Hp: 0
     MoveSpeed: 0
-    WeaponRange: 0
+    GameTimeSpeed: 0
   isLive: 1
   weaponManager: {fileID: 0}
 --- !u!95 &2504489922614730596
@@ -935,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mentalSlider: {fileID: 9191982258312533091}
+  _mentalSliderFill: {fileID: 5428073377306949019}
   _hpPlusAnimationObj: {fileID: 3570919684838893968}
   _hpMinusAnimationObj: {fileID: 6034429011623499120}
 --- !u!1 &8871414100113041500
