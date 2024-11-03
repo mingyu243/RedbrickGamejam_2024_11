@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackSpeed;
     [SerializeField] private int hp; // MonsterData에서 가져오는 체력
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float avoidDistance = 1.0f; // 회피 거리
+    [SerializeField] private float avoidStrength = 1.5f; // 회피 강도
 
     private float attackRange = 1.5f;
     private float attackCooldown = 1.5f;
@@ -52,7 +54,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isLive || target == null || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit")) // target이 null인지 확인 || 피격중이 아니라면 이동
+        if (!isLive || target == null || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return;
         }
@@ -60,8 +62,25 @@ public class Enemy : MonoBehaviour
         // 공격 중이 아니라면 이동
         if (!isAttacking)
         {
-            Vector2 dirVec = target.position - enemyRigid.position; // 방향 계산
-            Vector2 nextVec = dirVec.normalized * moveSpeed * Time.fixedDeltaTime;
+            Vector2 dirVec = target.position - enemyRigid.position; // 목표 방향 계산
+            Vector2 avoidVec = Vector2.zero;
+
+            // 회피 벡터 계산
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, avoidDistance);
+            foreach (var collider in nearbyEnemies)
+            {
+                if (collider != GetComponent<Collider2D>() && collider.CompareTag("Enemy"))
+                {
+                    Vector2 directionToOther = (Vector2)(transform.position - collider.transform.position);
+                    float distance = directionToOther.magnitude;
+                    avoidVec += directionToOther.normalized / distance; // 가까울수록 강하게 회피
+                }
+            }
+
+            // 목표 방향과 회피 벡터를 결합하여 최종 이동 방향 결정
+            Vector2 finalDirection = (dirVec.normalized + avoidVec * avoidStrength).normalized;
+            Vector2 nextVec = finalDirection * moveSpeed * Time.fixedDeltaTime;
+
             enemyRigid.MovePosition(enemyRigid.position + nextVec);
             enemyRigid.velocity = Vector2.zero;
         }
@@ -71,7 +90,7 @@ public class Enemy : MonoBehaviour
         if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             Attack();
-            lastAttackTime = Time.time; // 공격 시간 갱신
+            lastAttackTime = Time.time;
         }
     }
 
