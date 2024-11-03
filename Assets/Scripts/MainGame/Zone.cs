@@ -11,7 +11,7 @@ public class Zone : MonoBehaviour
 
     [SerializeField] Transform[] _randomSpawnPosTrs;
 
-    [SerializeField] TMP_Text _numberText;
+    [SerializeField] ZoneActiveEffect _zoneActiveEffect;
 
     public Vector3 GetRandomPosition()
     {
@@ -20,14 +20,12 @@ public class Zone : MonoBehaviour
     }
     public void Show()
     {
-        Debug.Log($"{_zoneIndex} 켜짐");
-        _numberText.color = new Color(1, 1, 1, 1);
+        _zoneActiveEffect.Show();
     }
 
     public void Hide()
     {
-        Debug.Log($"{_zoneIndex} 꺼짐");
-        _numberText.color = new Color(1, 1, 1, 67 / 255f);
+        _zoneActiveEffect.Hide();
     }
 
     private void Start()
