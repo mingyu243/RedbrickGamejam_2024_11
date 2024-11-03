@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,5 +48,22 @@ public class ZoneController : MonoBehaviour
 
         Orb orb = Managers.GamePlay.MainGame.Orb;
         orb.SetLinkPower(_stayingZoneIndex);
+
+        Managers.GamePlay.MainGame.ZoneController.EffectZone(_stayingZoneIndex);
+    }
+
+    private void EffectZone(int zoneIndex)
+    {
+        for (int i = 0; i < Zones.Length; i++)
+        {
+            if (zoneIndex == i)
+            {
+                Zones[i].Show();
+            }
+            else
+            {
+                Zones[i].Hide();
+            }
+        }
     }
 }
