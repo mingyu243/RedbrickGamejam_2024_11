@@ -18,7 +18,6 @@ public class WeaponManager : MonoBehaviour
     {
         yield return new WaitUntil(() => Managers.IsInit);
 
-        weaponRange = Managers.Data.PlayerDatas[0].WeaponRange;
         Managers.GamePlay.MainGame.ZoneController.EffectPlayer();
     }
 
@@ -85,11 +84,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     // 무기의 개수와 회전 속도를 설정하는 함수
-    public void SetWeaponProperties(int newWeaponCount, float newRotationSpeed)
+    public void SetWeaponProperties(int newWeaponCount, float newRotationSpeed, float newWeaponRange)
     {
         previousWeaponCount = weaponCount;
         weaponCount = newWeaponCount;
         rotationSpeed = newRotationSpeed;
+        weaponRange = newWeaponRange;
         InitializeWeapons();
     }
 }

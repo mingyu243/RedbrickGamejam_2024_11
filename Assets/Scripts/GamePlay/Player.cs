@@ -90,28 +90,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
-        // 마우스 위치 기준으로 공격 방향 계산
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 attackDir = (mousePos - transform.position).normalized;
+    //void Attack()
+    //{
+    //    // 마우스 위치 기준으로 공격 방향 계산
+    //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //    Vector2 attackDir = (mousePos - transform.position).normalized;
 
-        // 공격 범위 내의 적 감지
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, playerData.WeaponRange);
-        animator.SetTrigger("Attack");
+    //    // 공격 범위 내의 적 감지
+    //    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, weaponRa.WeaponRange);
+    //    animator.SetTrigger("Attack");
 
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-            {
-                // 적에게 데미지 주기
-                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-                if (enemyHealth != null)
-                {
-                    enemyHealth.TakeDamage(playerData.Attack);
-                    Debug.Log("적에게 " + playerData.Attack + " 데미지를 주었습니다!");
-                }
-            }
-        }
-    }
+    //    foreach (RaycastHit2D hit in hits)
+    //    {
+    //        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+    //        {
+    //            // 적에게 데미지 주기
+    //            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+    //            if (enemyHealth != null)
+    //            {
+    //                enemyHealth.TakeDamage(playerData.Attack);
+    //                Debug.Log("적에게 " + playerData.Attack + " 데미지를 주었습니다!");
+    //            }
+    //        }
+    //    }
+    //}
 }

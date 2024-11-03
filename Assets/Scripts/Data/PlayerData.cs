@@ -6,5 +6,4 @@ public class PlayerData
     public int Attack;
     public int Hp;
     public float MoveSpeed;
-    public float WeaponRange;
 }

@@ -43,7 +43,7 @@ public class ZoneController : MonoBehaviour
         ZoneData zoneData = Managers.Data.ZoneDatas[_stayingZoneIndex];
 
         Player player = Managers.GamePlay.MainGame.Player;
-        player.Weapon.SetWeaponProperties(zoneData.WeaponCount, zoneData.RotationSpeed);
+        player.Weapon.SetWeaponProperties(zoneData.WeaponCount, zoneData.RotationSpeed, zoneData.WeaponRange);
         player.PlayerMental.ChangeRate = zoneData.PlayerMentalChangeRate;
 
         Orb orb = Managers.GamePlay.MainGame.Orb;

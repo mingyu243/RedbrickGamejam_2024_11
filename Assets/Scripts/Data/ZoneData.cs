@@ -7,4 +7,5 @@ public class ZoneData
     public int WeaponCount;
     public float RotationSpeed;
     public float PlayerMentalChangeRate;
+    public float WeaponRange;
 }
