@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         //hp = playeraData.Hp;
         //moveSpeed = playeraData.MoveSpeed;
 
-        Weapon.SetWeaponRange(playerData.WeaponRange);
         PlayerHealth.InitializeHealth(playerData.Hp);
         PlayerMental.Init();
     }

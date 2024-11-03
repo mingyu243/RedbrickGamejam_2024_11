@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     {
         yield return new WaitUntil(() => Managers.IsInit);
 
+        weaponRange = Managers.Data.PlayerDatas[0].WeaponRange;
         Managers.GamePlay.MainGame.ZoneController.EffectPlayer();
     }
 
@@ -47,7 +48,7 @@ public class WeaponManager : MonoBehaviour
         for (int i = 0; i < weaponCount; i++)
         {
             GameObject weapon = Instantiate(weaponPrefab, transform);
-            float angle = i * Mathf.PI * weaponRange / weaponCount; // 각도 계산
+            float angle = i * Mathf.PI * 2 / weaponCount; // 각도 계산
             Vector3 weaponPosition = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * weaponRange;
             // 이전 위치 적용, 존재하지 않으면 기본 위치 적용
             if (previousWeaponCount != -1 && previousWeaponCount == weaponCount && i < lastTrans.Length)
@@ -81,11 +82,6 @@ public class WeaponManager : MonoBehaviour
             Destroy(weapon);
         }
         weapons.Clear();
-    }
-
-    public void SetWeaponRange(float range)
-    {
-        weaponRange = range;
     }
 
     // 무기의 개수와 회전 속도를 설정하는 함수
