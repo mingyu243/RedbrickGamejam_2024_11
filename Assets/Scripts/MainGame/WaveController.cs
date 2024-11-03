@@ -50,19 +50,23 @@ public class WaveController : MonoBehaviour
             if (rand < accumulatedWeight)
             {
                 Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Common);
+                i++;
+                continue;
             }
             accumulatedWeight += data.Monster2Weight;
             if (rand < accumulatedWeight)
             {
                 Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Rare);
+                i++;
+                continue;
             }
             accumulatedWeight += data.Monster3Weight;
             if (rand < accumulatedWeight)
             {
                 Managers.GamePlay.MainGame.MonsterSpawner.Spawn(MonsterType.Boss);
+                i++;
+                continue;
             }
-
-            i++;
         }
     }
 }

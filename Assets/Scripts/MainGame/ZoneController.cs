@@ -8,6 +8,8 @@ public class ZoneController : MonoBehaviour
 
     [SerializeField] Zone[] _zones;
 
+    public Zone[] Zones => _zones;
+
     public void Init()
     {
         _stayingZoneIndex = -1;
@@ -15,7 +17,7 @@ public class ZoneController : MonoBehaviour
 
     public Vector3 GetRandomPosition(int zoneIndex)
     {
-        return _zones[zoneIndex].GetRandomPosition();
+        return Zones[zoneIndex].GetRandomPosition();
     }
 
     public void OnTriggerStayPlayer(int zoneIndex)
@@ -37,11 +39,13 @@ public class ZoneController : MonoBehaviour
 
     public void EffectPlayer()
     {
-        Player player = Managers.GamePlay.MainGame.Player;
-
         ZoneData zoneData = Managers.Data.ZoneDatas[_stayingZoneIndex];
 
+        Player player = Managers.GamePlay.MainGame.Player;
         player.Weapon.SetWeaponProperties(zoneData.WeaponCount, zoneData.RotationSpeed);
         player.PlayerMental.ChangeRate = zoneData.PlayerMentalChangeRate;
+
+        Orb orb = Managers.GamePlay.MainGame.Orb;
+        orb.SetLinkPower(_stayingZoneIndex);
     }
 }

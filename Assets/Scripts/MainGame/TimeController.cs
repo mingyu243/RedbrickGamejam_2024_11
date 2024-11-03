@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    [SerializeField] float _timeScale = 1f;
     [SerializeField] float _currentTime;
     [Space]
     [SerializeField] int _currTimeEventIndex;
@@ -21,8 +20,6 @@ public class TimeController : MonoBehaviour
 
     public void OnUpdate()
     {
-        Time.timeScale = _timeScale;
-
         _currentTime += Time.deltaTime;
         Managers.Ui.Battle.SetTime(_currentTime);
 
