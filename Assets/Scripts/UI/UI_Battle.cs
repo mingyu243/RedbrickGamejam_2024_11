@@ -14,30 +14,16 @@ public class UI_Battle : MonoBehaviour
     [SerializeField] GameObject _waveAlert;
     [SerializeField] TMP_Text _waveAlertNumberText;
     [Space]
-    [SerializeField] Button _testOrbDeathButton;
-    [SerializeField] Button _testPlayerDeathButton;
     [SerializeField] Button _settingButton;
 
     void Start()
     {
-        _testOrbDeathButton.onClick.AddListener(OnClickTestOrbDeath);
-        _testPlayerDeathButton.onClick.AddListener(OnClickTestPlayerDeath);
         _settingButton.onClick.AddListener(OnClickSetting);
     }
 
     private void OnEnable()
     {
         _waveAlert.SetActive(false);
-    }
-
-    public void OnClickTestOrbDeath()
-    {
-        Managers.GamePlay.MainGame.GameResult = GameResult.OrbDeath;
-    }
-
-    public void OnClickTestPlayerDeath()
-    {
-        Managers.GamePlay.MainGame.GameResult = GameResult.PlayerDeath;
     }
 
     public void OnClickSetting()
