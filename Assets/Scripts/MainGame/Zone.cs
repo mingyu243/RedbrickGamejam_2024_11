@@ -21,13 +21,13 @@ public class Zone : MonoBehaviour
     public void Show()
     {
         Debug.Log($"{_zoneIndex} 켜짐");
-        _numberText.rectTransform.localScale = Vector3.one * 1.5f;
+        _numberText.color = new Color(1, 1, 1, 1);
     }
 
     public void Hide()
     {
         Debug.Log($"{_zoneIndex} 꺼짐");
-        _numberText.rectTransform.localScale = Vector3.one * 1f;
+        _numberText.color = new Color(1, 1, 1, 67 / 255f);
     }
 
     private void Start()
