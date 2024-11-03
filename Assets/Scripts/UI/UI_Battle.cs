@@ -11,6 +11,8 @@ public class UI_Battle : MonoBehaviour
     [SerializeField] TMP_Text _waveNumberText;
     [SerializeField] TMP_Text _playerHpText;
     [Space]
+    [SerializeField] GameObject _gameStartAlert;
+    [Space]
     [SerializeField] GameObject _waveAlert;
     [SerializeField] TMP_Text _waveAlertNumberText;
     [Space]
@@ -24,6 +26,7 @@ public class UI_Battle : MonoBehaviour
     private void OnEnable()
     {
         _waveAlert.SetActive(false);
+        _gameStartAlert.SetActive(false);
     }
 
     public void OnClickSetting()
@@ -46,10 +49,16 @@ public class UI_Battle : MonoBehaviour
         _waveNumberText.text = waveNumber.ToString();
     }
 
+    public void ShowGameStartAlert()
+    {
+        _gameStartAlert.SetActive(false);
+        _gameStartAlert.SetActive(true);
+    }
+
     public void ShowWaveAlert(int waveNumber)
     {
         _waveAlertNumberText.text = waveNumber.ToString();
-        _waveAlert.gameObject.SetActive(false);
-        _waveAlert.gameObject.SetActive(true);
+        _waveAlert.SetActive(false);
+        _waveAlert.SetActive(true);
     }
 }

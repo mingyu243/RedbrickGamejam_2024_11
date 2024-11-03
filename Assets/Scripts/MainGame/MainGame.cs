@@ -129,9 +129,12 @@ public class MainGame : MonoBehaviour
         GameState = GameState.Ready;
 
         Managers.Ui.ShowUI(UIType.Battle);
-        Player.PlayerMental.SetVisibleSlider(true);
+        
+        Managers.Ui.Battle.ShowGameStartAlert();
+        yield return new WaitForSeconds(5f);
 
-        yield return new WaitForSeconds(2f);
+        Player.PlayerMental.SetVisibleSlider(true);
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator BattlePhase()

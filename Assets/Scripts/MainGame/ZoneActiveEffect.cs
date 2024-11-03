@@ -19,7 +19,7 @@ public class ZoneActiveEffect : MonoBehaviour
 
         yield return new WaitUntil(() => Managers.IsInit);
 
-        string baseDesc = "     x {0}\r\n회전 속도 {1}\r\n회복 속도 {2}";
+        string baseDesc = "     x {0}\r\n회전 속도 {1}\r\n체력 회복 {2}";
 
         ZoneData zoneData = Managers.Data.ZoneDatas[_zoneId];
 
