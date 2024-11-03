@@ -11,7 +11,6 @@ public class OrbLink : MonoBehaviour
     public void SetPower(float ratio)
     {
         SetMaterialPower(ratio);
-        //SetWidth(ratio);
     }
 
     void SetMaterialPower(float ratio)
@@ -24,7 +23,7 @@ public class OrbLink : MonoBehaviour
         _lineRenderer.material.SetFloat("_Power", value);
     }
 
-    void SetWidth(float ratio)
+    public void SetWidth(float ratio)
     {
         float min = 0.1f;
         float max = 1.0f;

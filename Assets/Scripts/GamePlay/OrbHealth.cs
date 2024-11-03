@@ -12,6 +12,10 @@ public class OrbHealth : MonoBehaviour
     public int maxHealth = 100; // 초기 체력
     public int health = 100; // 현재 체력
 
+    [SerializeField] private OrbLink _orbLinkRed;
+    [SerializeField] private OrbLink _orbLinkYellow;
+    [SerializeField] private OrbLink _orbLinkBlue;
+
     private void Start()
     {
         Init();
@@ -35,6 +39,10 @@ public class OrbHealth : MonoBehaviour
 
         // 비율에 따른 모습 변화
         float ratio = (float)health / (float)maxHealth;
+        _orbLinkRed.SetWidth(ratio);
+        _orbLinkYellow.SetWidth(ratio);
+        _orbLinkBlue.SetWidth(ratio);
+
         ratio *= 100;
         if (ratio >= 60)
         {
@@ -55,6 +63,8 @@ public class OrbHealth : MonoBehaviour
             _red.SetActive(true);
         }
     }
+
+
 
     // 데미지를 받는 메서드
     public void TakeDamage(int damage)

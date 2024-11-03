@@ -37634,6 +37634,9 @@ MonoBehaviour:
   _destroy: {fileID: 795268245}
   maxHealth: 100
   health: 100
+  _orbLinkRed: {fileID: 2259933}
+  _orbLinkYellow: {fileID: 1496618062}
+  _orbLinkBlue: {fileID: 2068188190}
 --- !u!58 &452115745
 CircleCollider2D:
   m_ObjectHideFlags: 0
