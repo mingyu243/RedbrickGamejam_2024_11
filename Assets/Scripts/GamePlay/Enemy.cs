@@ -14,10 +14,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float avoidDistance = 1.0f; // 회피 거리
     [SerializeField] private float avoidStrength = 1.5f; // 회피 강도
 
-    private float attackRange = 1.5f;
+    private float attackRange = 3.2f; // 오브 크기에 따라 바꿔줘야 함
     private float attackCooldown = 1.5f;
     private float lastAttackTime = 0f;
-
+    
     public bool isLive = true;
     private bool isAttacking = false;
 

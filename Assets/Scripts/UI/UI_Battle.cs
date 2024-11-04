@@ -16,9 +16,10 @@ public class UI_Battle : MonoBehaviour
     [SerializeField] GameObject _gameOverForm;
     [Header("Game Start Alert")]
     [SerializeField] GameObject _gameStartAlert;
-    [Header("Wave Start Alert")]
+    [Header("Wave Alert")]
     [SerializeField] GameObject _waveAlert;
     [SerializeField] TMP_Text _waveAlertNumberText;
+    [SerializeField] GameObject _bossWaveAlert;
     [Space]
     [SerializeField] Button _settingButton;
 

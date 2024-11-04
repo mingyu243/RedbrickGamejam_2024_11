@@ -36896,7 +36896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &186614075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41075,6 +41075,7 @@ MonoBehaviour:
   _gameStartAlert: {fileID: 1886208069}
   _waveAlert: {fileID: 186614074}
   _waveAlertNumberText: {fileID: 1871428700}
+  _bossWaveAlert: {fileID: 0}
   _settingButton: {fileID: 1200719300}
 --- !u!1 &741215151
 GameObject:
@@ -43812,7 +43813,7 @@ GameObject:
   - component: {fileID: 922107263}
   - component: {fileID: 922107262}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50123,7 +50124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1886208070
 RectTransform:
   m_ObjectHideFlags: 0
