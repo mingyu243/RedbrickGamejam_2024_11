@@ -16,7 +16,7 @@ public class OrbLink : MonoBehaviour
     void SetMaterialPower(float ratio)
     {
         float min = 1f;
-        float max = 5f;
+        float max = 8f;
 
         float value = Mathf.Lerp(min, max, 1 - ratio);
 
