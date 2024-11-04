@@ -130,12 +130,12 @@ public class DataManager : MonoBehaviour
             string row = rows[i + DUMMY_COUNT];
             string[] values = row.Split(',');
 
-            int eventTime = int.Parse(values[0]);
+            int triggerTime = int.Parse(values[0]);
             int waveId = int.Parse(values[1]);
 
             TimeEventData timeEventData = new TimeEventData()
             {
-                EventTime = eventTime,
+                TriggerTime = triggerTime,
                 WaveId = waveId,
             };
             _timeEventDatas[i] = timeEventData;

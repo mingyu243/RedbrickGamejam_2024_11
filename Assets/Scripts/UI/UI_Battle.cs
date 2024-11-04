@@ -7,14 +7,16 @@ using UnityEngine.UI;
 
 public class UI_Battle : MonoBehaviour
 {
+    [Header("Info Form")]
     [SerializeField] TMP_Text _timeText;
     [SerializeField] TMP_Text _waveNumberText;
     [SerializeField] TMP_Text _playerHpText;
-    [Space]
-    [SerializeField] GameObject _gameOver;
-    [Space]
+    [SerializeField] TMP_Text _nextWaveTimeText;
+    [Header("Game Over Form")]
+    [SerializeField] GameObject _gameOverForm;
+    [Header("Game Start Alert")]
     [SerializeField] GameObject _gameStartAlert;
-    [Space]
+    [Header("Wave Start Alert")]
     [SerializeField] GameObject _waveAlert;
     [SerializeField] TMP_Text _waveAlertNumberText;
     [Space]
@@ -29,7 +31,7 @@ public class UI_Battle : MonoBehaviour
     {
         _waveAlert.SetActive(false);
         _gameStartAlert.SetActive(false);
-        _gameOver.SetActive(false);
+        _gameOverForm.SetActive(false);
     }
 
     public void OnClickSetting()
@@ -52,9 +54,14 @@ public class UI_Battle : MonoBehaviour
         _waveNumberText.text = waveNumber.ToString();
     }
 
+    public void SetNextWaveTime(float time)
+    {
+        _nextWaveTimeText.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
+    }
+
     public void ShowGameOver()
     {
-        _gameOver.SetActive(true);
+        _gameOverForm.SetActive(true);
     }
 
     public void ShowGameStartAlert()

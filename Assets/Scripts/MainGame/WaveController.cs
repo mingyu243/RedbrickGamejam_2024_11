@@ -17,8 +17,12 @@ public class WaveController : MonoBehaviour
         Debug.Log($"웨이브 실행 {waveId}");
         _currentWaveId = waveId;
 
-        Managers.Ui.Battle.SetWaveNumber(_currentWaveId + 1);
-        Managers.Ui.Battle.ShowWaveAlert(_currentWaveId + 1);
+        int waveNumber = _currentWaveId + 1;
+        Managers.Ui.Battle.SetWaveNumber(waveNumber);
+        Managers.Ui.Battle.ShowWaveAlert(waveNumber);
+        
+        int nextWaveId = _currentWaveId + 1;
+        Managers.Ui.Battle.SetNextWaveTime(Managers.Data.TimeEventDatas[nextWaveId].TriggerTime);
 
         WaveData data = Managers.Data.WaveDatas[_currentWaveId];
 

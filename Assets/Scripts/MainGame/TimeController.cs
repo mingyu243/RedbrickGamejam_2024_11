@@ -23,6 +23,7 @@ public class TimeController : MonoBehaviour
 
         _currentTime = 0;
         Managers.Ui.Battle.SetTime(0);
+        Managers.Ui.Battle.SetNextWaveTime(Managers.Data.TimeEventDatas[0].TriggerTime);
     }
 
     public void OnUpdate()
@@ -31,7 +32,7 @@ public class TimeController : MonoBehaviour
         Managers.Ui.Battle.SetTime(_currentTime);
 
         TimeEventData data = Managers.Data.TimeEventDatas[_currTimeEventIndex];
-        if (data.EventTime <= _currentTime)
+        if (data.TriggerTime <= _currentTime)
         {
             TriggerEvent(data);
             _currTimeEventIndex++;
