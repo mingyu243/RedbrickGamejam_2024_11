@@ -133,7 +133,7 @@ public class MainGame : MonoBehaviour
         Managers.Ui.ShowUI(UIType.Battle);
         
         Managers.Ui.Battle.ShowGameStartAlert();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
 
         Player.PlayerMental.SetVisibleSlider(true);
         yield return new WaitForSeconds(1f);
