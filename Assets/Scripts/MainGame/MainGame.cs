@@ -56,9 +56,9 @@ public class MainGame : MonoBehaviour
     {
         Player.transform.position = _playerSpawnPositionTr.position;
 
-        Managers.Ui.SetVisibleLoadingUI(true);
+        Managers.Ui.Title.SetVisibleLoadingUI(true);
         yield return new WaitUntil(() => Managers.IsInit);
-        Managers.Ui.SetVisibleLoadingUI(false);
+        Managers.Ui.Title.SetVisibleLoadingUI(false);
 
         Managers.Ui.ShowUI(UIType.Title);
     }

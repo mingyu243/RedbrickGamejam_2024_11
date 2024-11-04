@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UI_Title : MonoBehaviour
 {
+    [SerializeField] GameObject _startingUI;
+    [SerializeField] GameObject _loadingUI;
+    [Space]
     [SerializeField] Button _startButton;
     [SerializeField] Button _exitButton;
 
@@ -12,6 +15,12 @@ public class UI_Title : MonoBehaviour
     {
         _startButton.onClick.AddListener(OnClickStartButton);
         _exitButton.onClick.AddListener(OnClickExitButton);
+    }
+
+    public void SetVisibleLoadingUI(bool isVisible)
+    {
+        _startingUI.SetActive(!isVisible);
+        _loadingUI.SetActive(isVisible);
     }
 
     public void OnClickStartButton()

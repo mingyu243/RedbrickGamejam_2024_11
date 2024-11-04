@@ -14,22 +14,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] UI_Battle _battle;
     [Space]
     [SerializeField] GameObject _setting;
-    [SerializeField] GameObject _loading;
 
     public UI_Title Title => _title;
     public UI_Battle Battle => _battle;
 
     void Start()
     {
-        Title.gameObject.SetActive(false);
+        Title.gameObject.SetActive(true);
         Battle.gameObject.SetActive(false);
 
         _setting.SetActive(false);
-    }
-
-    public void SetVisibleLoadingUI(bool isVisible)
-    {
-        _loading.SetActive(isVisible);
     }
 
     public void ShowUI(UIType uiType)
