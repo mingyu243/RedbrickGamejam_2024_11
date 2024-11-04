@@ -6,41 +6,41 @@ public enum UIType
 {
     Title,
     Battle,
-    End
 }
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] UI_Title _title;
     [SerializeField] UI_Battle _battle;
-    [SerializeField] UI_End _end;
     [Space]
     [SerializeField] GameObject _setting;
+    [SerializeField] GameObject _loading;
 
     public UI_Title Title => _title;
     public UI_Battle Battle => _battle;
-    public UI_End End => _end;
 
     void Start()
     {
         Title.gameObject.SetActive(false);
         Battle.gameObject.SetActive(false);
-        End.gameObject.SetActive(false);
 
         _setting.SetActive(false);
+    }
+
+    public void SetVisibleLoadingUI(bool isVisible)
+    {
+        _loading.SetActive(isVisible);
     }
 
     public void ShowUI(UIType uiType)
     {
         Title.gameObject.SetActive(false);
         Battle.gameObject.SetActive(false);
-        End.gameObject.SetActive(false);
 
         switch (uiType)
         {
             case UIType.Title: Title.gameObject.SetActive(true); break;
             case UIType.Battle: Battle.gameObject.SetActive(true); break;
-            case UIType.End: End.gameObject.SetActive(true); break;
         }
     }
 

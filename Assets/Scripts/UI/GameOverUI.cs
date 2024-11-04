@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_End : MonoBehaviour
+public class GameOverUI : MonoBehaviour
 {
     [SerializeField] Button _restartButton;
     [SerializeField] Button _exitButton;
@@ -17,6 +17,7 @@ public class UI_End : MonoBehaviour
     public void OnClickRestartButton()
     {
         Managers.GamePlay.MainGame.RestartGame();
+        this.gameObject.SetActive(false);
     }
 
     public void OnClickExitButton()

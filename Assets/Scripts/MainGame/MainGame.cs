@@ -56,7 +56,9 @@ public class MainGame : MonoBehaviour
     {
         Player.transform.position = _playerSpawnPositionTr.position;
 
+        Managers.Ui.SetVisibleLoadingUI(true);
         yield return new WaitUntil(() => Managers.IsInit);
+        Managers.Ui.SetVisibleLoadingUI(false);
 
         Managers.Ui.ShowUI(UIType.Title);
     }
@@ -183,7 +185,7 @@ public class MainGame : MonoBehaviour
 
         if (GameResult != GameResult.Aborted)
         {
-            Managers.Ui.ShowUI(UIType.End);
+            Managers.Ui.Battle.ShowGameOver();
         }
 
         MonsterSpawner.Clear();
