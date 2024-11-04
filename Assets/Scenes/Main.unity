@@ -212,8 +212,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Positions:
-  - {x: -9.68, y: -2.72, z: 0}
-  - {x: -1.85, y: -1.68, z: 1}
+  - {x: -11.46, y: -4.02, z: 0}
+  - {x: 0.67, y: -1.73, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -39651,7 +39651,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -39676,7 +39676,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7300695, y: 1.7115674, z: -10}
+  m_LocalPosition: {x: 5.282491, y: 3.745984, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39698,7 +39698,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -43750,7 +43750,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1780985915}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 9
+    OrthographicSize: 11
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -43776,7 +43776,7 @@ Transform:
   m_GameObject: {fileID: 920369712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -1.6799998, z: -10}
+  m_LocalPosition: {x: 0.57, y: -1.6799998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46240,7 +46240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3525603391738360798, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.85
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 3525603391738360798, guid: 14e221fd0c8c8f340929f8414c30684e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -47935,8 +47935,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Positions:
-  - {x: -9.68, y: -2.72, z: 0}
-  - {x: -1.85, y: -1.68, z: 1}
+  - {x: -11.46, y: -4.02, z: 0}
+  - {x: 0.67, y: -1.73, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -48021,7 +48021,7 @@ Transform:
   m_GameObject: {fileID: 1506714282}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -1.6799998, z: 0}
+  m_LocalPosition: {x: 0.57, y: -1.6799998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51155,8 +51155,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Positions:
-  - {x: -9.78, y: -2.98, z: 0}
-  - {x: -1.82, y: -1.74, z: 1}
+  - {x: -11.46, y: -4.02, z: 0}
+  - {x: 0.67, y: -1.73, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
