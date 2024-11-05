@@ -7,12 +7,12 @@ public class DataManager : MonoBehaviour
 {
     const string DOC_ID = "10NiacqcUdul9EiHZGjPd85O67-KLl42qpaVduHxH9GA";
 
-    const string PLAYER_DATA_G_ID = "1860695544";
-    const string MONSTER_DATA_G_ID = "1672973443";
-    const string ORB_DATA_G_ID = "320756229";
-    const string TIME_EVENT_DATA_G_ID = "72613725";
-    const string WAVE_DATA_G_ID = "1412932090";
-    const string ZONE_DATA_G_ID = "1239032604";
+    const string PLAYER_DATA_G_ID = "249783776";
+    const string MONSTER_DATA_G_ID = "2140484697";
+    const string ORB_DATA_G_ID = "1547408368";
+    const string TIME_EVENT_DATA_G_ID = "1200558053";
+    const string WAVE_DATA_G_ID = "1288517331";
+    const string ZONE_DATA_G_ID = "236506657";
 
     // 스프레드 시트에서 읽어온 데이터에서 윗 행을 버림 (설명 10줄, 변수명 1줄)
     const int DUMMY_COUNT = 11;
