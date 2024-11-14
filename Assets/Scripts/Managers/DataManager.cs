@@ -10,9 +10,9 @@ public class DataManager : MonoBehaviour
     const string PLAYER_DATA_G_ID = "249783776";
     const string MONSTER_DATA_G_ID = "2140484697";
     const string ORB_DATA_G_ID = "1547408368";
+    const string ORB_EFFECT_DATA_G_ID = "236506657";
     const string TIME_EVENT_DATA_G_ID = "1200558053";
     const string WAVE_DATA_G_ID = "1288517331";
-    const string ZONE_DATA_G_ID = "236506657";
 
     // 스프레드 시트에서 읽어온 데이터에서 윗 행을 버림 (설명 10줄, 변수명 1줄)
     const int DUMMY_COUNT = 11;
@@ -20,25 +20,25 @@ public class DataManager : MonoBehaviour
     [SerializeField] PlayerData[] _playerDatas;
     [SerializeField] MonsterData[] _monsterDatas;
     [SerializeField] OrbData[] _orbDatas;
+    [SerializeField] OrbEffectData[] _orbEffectDatas;
     [SerializeField] TimeEventData[] _timeEventDatas;
     [SerializeField] WaveData[] _waveDatas;
-    [SerializeField] ZoneData[] _zoneDatas;
 
     public PlayerData[] PlayerDatas => _playerDatas;
     public MonsterData[] MonsterDatas => _monsterDatas;
     public OrbData[] OrbDatas => _orbDatas;
+    public OrbEffectData[] OrbEffectDatas => _orbEffectDatas;
     public TimeEventData[] TimeEventDatas => _timeEventDatas;
     public WaveData[] WaveDatas => _waveDatas;
-    public ZoneData[] ZoneDatas => _zoneDatas;
 
     public IEnumerator Init()
     {
         yield return GoogleSheetsLoader.LoadData(DOC_ID, PLAYER_DATA_G_ID, ParseCSVDataPlayerData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, MONSTER_DATA_G_ID, ParseCSVDataMonsterData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_DATA_G_ID, ParseCSVDataOrbData);
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_EFFECT_DATA_G_ID, ParseCSVDataOrbEffectData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, TIME_EVENT_DATA_G_ID, ParseCSVDataTimeEventData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, WAVE_DATA_G_ID, ParseCSVDataWaveData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, ZONE_DATA_G_ID, ParseCSVDataZoneData);
     }
 
     private void ParseCSVDataPlayerData(string csvData)
@@ -171,32 +171,34 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void ParseCSVDataZoneData(string csvData)
+    private void ParseCSVDataOrbEffectData(string csvData)
     {
         string[] rows = csvData.Split('\n');
         int rowsCount = rows.Length - DUMMY_COUNT;
 
-        _zoneDatas = new ZoneData[rowsCount];
+        _orbEffectDatas = new OrbEffectData[rowsCount];
         for (int i = 0; i < rowsCount; i++)
         {
             string row = rows[i + DUMMY_COUNT];
             string[] values = row.Split(',');
 
             int id = int.Parse(values[0]);
-            int weaponCount = int.Parse(values[1]);
-            float rotationSpeed = float.Parse(values[2]);
-            float playerMentalChangeRate = float.Parse(values[3]);
-            float weaponRange = float.Parse(values[4]);
+            float zoneRadius = float.Parse(values[1]);
+            int weaponCount = int.Parse(values[2]);
+            float rotationSpeed = float.Parse(values[3]);
+            float playerMentalChangeRate = float.Parse(values[4]);
+            float weaponRange = float.Parse(values[5]);
 
-            ZoneData data = new ZoneData()
+            OrbEffectData data = new OrbEffectData()
             {
                 Id = id,
+                ZoneRadius = zoneRadius,
                 WeaponCount = weaponCount,
                 RotationSpeed = rotationSpeed,
                 PlayerMentalChangeRate = playerMentalChangeRate,
                 WeaponRange = weaponRange
             };
-            _zoneDatas[i] = data;
+            _orbEffectDatas[i] = data;
         }
     }
 }

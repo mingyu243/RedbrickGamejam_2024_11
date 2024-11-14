@@ -30,19 +30,19 @@ public class MonsterSpawner : MonoBehaviour
             case MonsterType.Common:
                 {
                     monsterPrefab = _monster1Prefab;
-                    spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(0, 7));
+                    //spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(0, 7));
                 }
                 break;
             case MonsterType.Rare:
                 {
                     monsterPrefab = _monster2Prefab;
-                    spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(2, 7));
+                    //spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(2, 7));
                 }
                 break;
             case MonsterType.Boss:
                 {
                     monsterPrefab = _monster3Prefab;
-                    spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(4, 7));
+                    //spawnPos = Managers.GamePlay.MainGame.ZoneController.GetRandomPosition(UnityEngine.Random.Range(4, 7));
                 }
                 break;
         }

@@ -14,13 +14,6 @@ public class WeaponManager : MonoBehaviour
 
     private int previousWeaponCount = -1; // 이전 무기 개수 기록
 
-    IEnumerator Start()
-    {
-        yield return new WaitUntil(() => Managers.IsInit);
-
-        Managers.GamePlay.MainGame.ZoneController.EffectPlayer();
-    }
-
     void Update()
     {
         RotateWeaponsAroundPlayer();

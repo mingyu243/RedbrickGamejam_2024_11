@@ -62,7 +62,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &3402614824542708604
 MonoBehaviour:
@@ -727,6 +727,7 @@ GameObject:
   - component: {fileID: 2504489922614730596}
   - component: {fileID: 7549830963028804806}
   - component: {fileID: 3964674919516854831}
+  - component: {fileID: 6597262449363900784}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -938,6 +939,18 @@ MonoBehaviour:
   _mentalSliderFill: {fileID: 5428073377306949019}
   _hpPlusAnimationObj: {fileID: 3570919684838893968}
   _hpMinusAnimationObj: {fileID: 6034429011623499120}
+--- !u!210 &6597262449363900784
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427911879550815080}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
 --- !u!1 &8871414100113041500
 GameObject:
   m_ObjectHideFlags: 0

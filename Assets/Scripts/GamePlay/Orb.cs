@@ -32,7 +32,7 @@ public class Orb : MonoBehaviour
 
     public void SetLinkPower(int stayingZoneIndex)
     {
-        int zoneCount = Managers.GamePlay.MainGame.ZoneController.Zones.Length;
+        int zoneCount = Managers.GamePlay.MainGame.OrbEffectController.ZoneCount;
         float ratio = (float)stayingZoneIndex / (float)zoneCount;
 
         _orbLinkRed.SetPower(1 - ratio);
