@@ -9,8 +9,8 @@ public class DataManager : MonoBehaviour
 
     const string PLAYER_DATA_G_ID = "249783776";
     const string MONSTER_DATA_G_ID = "2140484697";
-    const string ORB_DATA_G_ID = "1547408368";
-    const string ORB_EFFECT_DATA_G_ID = "236506657";
+    const string CORE_DATA_G_ID = "1547408368";
+    const string CORE_EFFECT_DATA_G_ID = "236506657";
     const string TIME_EVENT_DATA_G_ID = "1200558053";
     const string WAVE_DATA_G_ID = "1288517331";
 
@@ -19,15 +19,15 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] PlayerData[] _playerDatas;
     [SerializeField] MonsterData[] _monsterDatas;
-    [SerializeField] OrbData[] _orbDatas;
-    [SerializeField] OrbEffectData[] _orbEffectDatas;
+    [SerializeField] CoreData[] _coreDatas;
+    [SerializeField] CoreEffectData[] _coreEffectDatas;
     [SerializeField] TimeEventData[] _timeEventDatas;
     [SerializeField] WaveData[] _waveDatas;
 
     public PlayerData[] PlayerDatas => _playerDatas;
     public MonsterData[] MonsterDatas => _monsterDatas;
-    public OrbData[] OrbDatas => _orbDatas;
-    public OrbEffectData[] OrbEffectDatas => _orbEffectDatas;
+    public CoreData[] CoreDatas => _coreDatas;
+    public CoreEffectData[] CoreEffectDatas => _coreEffectDatas;
     public TimeEventData[] TimeEventDatas => _timeEventDatas;
     public WaveData[] WaveDatas => _waveDatas;
 
@@ -35,8 +35,8 @@ public class DataManager : MonoBehaviour
     {
         yield return GoogleSheetsLoader.LoadData(DOC_ID, PLAYER_DATA_G_ID, ParseCSVDataPlayerData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, MONSTER_DATA_G_ID, ParseCSVDataMonsterData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_DATA_G_ID, ParseCSVDataOrbData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, ORB_EFFECT_DATA_G_ID, ParseCSVDataOrbEffectData);
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_DATA_G_ID, ParseCSVDataCoreData);
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_EFFECT_DATA_G_ID, ParseCSVDataCoreEffectData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, TIME_EVENT_DATA_G_ID, ParseCSVDataTimeEventData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, WAVE_DATA_G_ID, ParseCSVDataWaveData);
     }
@@ -98,12 +98,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void ParseCSVDataOrbData(string csvData)
+    private void ParseCSVDataCoreData(string csvData)
     {
         string[] rows = csvData.Split('\n');
         int rowsCount = rows.Length - DUMMY_COUNT;
 
-        _orbDatas = new OrbData[rowsCount];
+        _coreDatas = new CoreData[rowsCount];
         for (int i = 0; i < rowsCount; i++)
         {
             string row = rows[i + DUMMY_COUNT];
@@ -111,11 +111,11 @@ public class DataManager : MonoBehaviour
 
             int hp = int.Parse(values[0]);
 
-            OrbData orbData = new OrbData()
+            CoreData coreData = new CoreData()
             {
                 Hp = hp,
             };
-            _orbDatas[i] = orbData;
+            _coreDatas[i] = coreData;
         }
     }
 
@@ -171,12 +171,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void ParseCSVDataOrbEffectData(string csvData)
+    private void ParseCSVDataCoreEffectData(string csvData)
     {
         string[] rows = csvData.Split('\n');
         int rowsCount = rows.Length - DUMMY_COUNT;
 
-        _orbEffectDatas = new OrbEffectData[rowsCount];
+        _coreEffectDatas = new CoreEffectData[rowsCount];
         for (int i = 0; i < rowsCount; i++)
         {
             string row = rows[i + DUMMY_COUNT];
@@ -184,21 +184,27 @@ public class DataManager : MonoBehaviour
 
             int id = int.Parse(values[0]);
             float zoneRadius = float.Parse(values[1]);
-            int weaponCount = int.Parse(values[2]);
-            float rotationSpeed = float.Parse(values[3]);
-            float playerMentalChangeRate = float.Parse(values[4]);
-            float weaponRange = float.Parse(values[5]);
 
-            OrbEffectData data = new OrbEffectData()
+            int weaponCount = int.Parse(values[2]);
+            float weaponSize = float.Parse(values[3]);
+            float weaponRotationSpeed = float.Parse(values[4]);
+            float weaponRange = float.Parse(values[5]);
+            
+            float playerMoveSpeed = float.Parse(values[6]);
+            float playerMentalChangeRate = float.Parse(values[7]);
+
+            CoreEffectData data = new CoreEffectData()
             {
                 Id = id,
                 ZoneRadius = zoneRadius,
                 WeaponCount = weaponCount,
-                RotationSpeed = rotationSpeed,
+                WeaponSize = weaponSize,
+                WeaponRotationSpeed = weaponRotationSpeed,
+                WeaponRange = weaponRange,
+                PlayerMoveSpeed = playerMoveSpeed,
                 PlayerMentalChangeRate = playerMentalChangeRate,
-                WeaponRange = weaponRange
             };
-            _orbEffectDatas[i] = data;
+            _coreEffectDatas[i] = data;
         }
     }
 }

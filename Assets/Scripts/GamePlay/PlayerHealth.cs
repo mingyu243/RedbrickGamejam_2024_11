@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 100; // 초기 체력
-    public Transform orb; // 오브의 Transform을 할당
     public float damageRange = 2f; // 체력이 감소되는 거리
     public int damageAmount = 5; // 감소할 체력 양
     public float damageInterval = 1.0f; // 체력 감소 간격 (초)

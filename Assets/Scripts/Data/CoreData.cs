@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class OrbData
+public class CoreData
 {
     public int Hp;
 }

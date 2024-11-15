@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] MonsterType monsterType;
-    public Rigidbody2D target; // 타겟이 되는 오브젝트 (오브)
+    public Rigidbody2D target; // 타겟이 되는 오브젝트 (코어)
 
     [SerializeField] private int attack;
     [SerializeField] private float attackSpeed;
@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float avoidDistance = 1.0f; // 회피 거리
     [SerializeField] private float avoidStrength = 1.5f; // 회피 강도
 
-    private float attackRange = 3.2f; // 오브 크기에 따라 바꿔줘야 함
+    private float attackRange = 3.2f; // 코어 크기에 따라 바꿔줘야 함
     private float attackCooldown = 1.5f;
     private float lastAttackTime = 0f;
     
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             enemyHealth.InitializeHealth(hp);
         }
 
-        target = Managers.GamePlay.MainGame.Orb.Rb;
+        target = Managers.GamePlay.MainGame.Core.Rb;
     }
 
     void FixedUpdate()
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
             enemyRigid.velocity = Vector2.zero;
         }
 
-        // 몬스터가 오브와 가까운지 확인하여 공격
+        // 몬스터가 코어와 가까운지 확인하여 공격
         float distanceToTarget = Vector2.Distance(target.position, enemyRigid.position);
         if (distanceToTarget <= attackRange && Time.time >= lastAttackTime + attackCooldown)
         {
@@ -99,14 +99,14 @@ public class Enemy : MonoBehaviour
         // 공격을 시작하고 이동을 멈추게 설정
         isAttacking = true;
 
-        // 오브가 존재하는지 확인하고 공격 수행
+        // 코어가 존재하는지 확인하고 공격 수행
         if (target != null)
         {
-            Debug.Log("몬스터가 오브를 공격합니다!");
-            OrbHealth orbHealth = target.GetComponent<OrbHealth>();
-            if (orbHealth != null)
+            Debug.Log("몬스터가 코어를 공격합니다!");
+            CoreHealth coreHealth = target.GetComponent<CoreHealth>();
+            if (coreHealth != null)
             {
-                orbHealth.TakeDamage(attack); // 오브에 10의 데미지
+                coreHealth.TakeDamage(attack); // 코어에 10의 데미지
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.EnemyAttack);
             }
         }

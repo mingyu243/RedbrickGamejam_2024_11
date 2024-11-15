@@ -17,12 +17,13 @@ public class Managers : MonoBehaviour
     [SerializeField] ApplicationManager _application;
     [SerializeField] GamePlayManager _gamePlay;
     [SerializeField] DataManager _data;
+    [SerializeField] CameraManager _camera;
 
     public static UIManager Ui => _instance._ui;
     public static ApplicationManager Application => _instance._application;
     public static GamePlayManager GamePlay => _instance._gamePlay;
     public static DataManager Data => _instance._data;
-
+    public static CameraManager Camera => _instance._camera;
 
     IEnumerator Start()
     {

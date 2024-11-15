@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2259931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067ba15f21ee83743adcb1a525aacded, type: 3}
+  m_Script: {fileID: 11500000, guid: c347a16dabd79414ea4b402d5b8c504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTr: {fileID: 1780985915}
@@ -106113,8 +106113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDatas: []
   _monsterDatas: []
-  _orbDatas: []
-  _orbEffectDatas: []
+  _coreDatas: []
+  _coreEffectDatas: []
   _timeEventDatas: []
   _waveDatas: []
 --- !u!1 &165199047
@@ -107112,7 +107112,7 @@ GameObject:
   - component: {fileID: 452115744}
   - component: {fileID: 452115748}
   m_Layer: 0
-  m_Name: Orb
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107144,18 +107144,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 452115742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7d488f2e325c14d8960a5659cedcd0, type: 3}
+  m_Script: {fileID: 11500000, guid: eac19d0186b56c04294f6ae5eb8583c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blue: {fileID: 2136132959}
-  _yellow: {fileID: 1192613537}
-  _red: {fileID: 817317141}
-  _destroy: {fileID: 795268245}
-  maxHealth: 100
-  health: 100
-  _orbLinkRed: {fileID: 2259933}
-  _orbLinkYellow: {fileID: 1496618062}
-  _orbLinkBlue: {fileID: 2068188190}
+  _coreLinkRed: {fileID: 2259933}
+  _coreLinkYellow: {fileID: 1496618062}
+  _coreLinkBlue: {fileID: 2068188190}
 --- !u!58 &452115745
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -107227,12 +107221,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 452115742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640b6198be7c2144299ccb925ace4c1a, type: 3}
+  m_Script: {fileID: 11500000, guid: e19ce27583522a64aa3d413211b28d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _orbLinkRed: {fileID: 2259933}
-  _orbLinkYellow: {fileID: 1496618062}
-  _orbLinkBlue: {fileID: 2068188190}
+  _blue: {fileID: 2136132959}
+  _yellow: {fileID: 1192613537}
+  _red: {fileID: 817317141}
+  _destroy: {fileID: 795268245}
+  maxHealth: 100
+  health: 100
+  _coreLinkRed: {fileID: 2259933}
+  _coreLinkYellow: {fileID: 1496618062}
+  _coreLinkBlue: {fileID: 2068188190}
+--- !u!1 &453831431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453831432}
+  - component: {fileID: 453831433}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453831432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453831431}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 898366204}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453831433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453831431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4343350e8e50d2443b2671f5fbeb72b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &473927513
 GameObject:
   m_ObjectHideFlags: 0
@@ -107316,10 +107360,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 514250272}
-  - component: {fileID: 514250273}
+  - component: {fileID: 514250275}
   - component: {fileID: 514250274}
   m_Layer: 0
-  m_Name: OrbEffectZoneController
+  m_Name: CoreEffectZoneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107340,20 +107384,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452115743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &514250273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514250271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116867a8ea34b9a4db8798b49d3e4988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minimapCamera: {fileID: 372842775}
-  _zonePrefab: {fileID: 5236280144935862042, guid: 83fa60f6f3e62054188b48b77f2128be, type: 3}
 --- !u!210 &514250274
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -107366,6 +107396,19 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_SortAtRoot: 0
+--- !u!114 &514250275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514250271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b63e8590f0cd84a80681c98b022627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zonePrefab: {fileID: 5236280144935862042, guid: 83fa60f6f3e62054188b48b77f2128be, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -108866,6 +108909,7 @@ Transform:
   - {fileID: 181162842}
   - {fileID: 70390511}
   - {fileID: 152804306}
+  - {fileID: 453831432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &898366205
@@ -108885,6 +108929,7 @@ MonoBehaviour:
   _application: {fileID: 181162843}
   _gamePlay: {fileID: 70390512}
   _data: {fileID: 152804307}
+  _camera: {fileID: 453831433}
 --- !u!1 &920369712
 GameObject:
   m_ObjectHideFlags: 0
@@ -109834,10 +109879,10 @@ MonoBehaviour:
   _gameState: 0
   _gameResult: 0
   _player: {fileID: 1542771193}
-  _orb: {fileID: 452115748}
+  _core: {fileID: 452115744}
   _timeController: {fileID: 2127930948}
   _waveController: {fileID: 725093977}
-  _orbEffectController: {fileID: 1907548898}
+  _coreEffectController: {fileID: 1907548898}
   _monsterSpawner: {fileID: 185328053}
   _playerSpawnPositionTr: {fileID: 1506714283}
 --- !u!1 &1166642382
@@ -111112,7 +111157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1496618060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067ba15f21ee83743adcb1a525aacded, type: 3}
+  m_Script: {fileID: 11500000, guid: c347a16dabd79414ea4b402d5b8c504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTr: {fileID: 1780985915}
@@ -112247,7 +112292,7 @@ GameObject:
   - component: {fileID: 1907548897}
   - component: {fileID: 1907548898}
   m_Layer: 0
-  m_Name: OrbEffectController
+  m_Name: CoreEffectController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112277,11 +112322,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1907548896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95541e3866cc6194fb740840f23ec774, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c7ac1bc8b8fd4b43a35b63293655b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoneController: {fileID: 514250273}
-  _orb: {fileID: 452115748}
+  _zoneController: {fileID: 514250275}
+  _core: {fileID: 452115744}
   _player: {fileID: 1542771193}
   _isOn: 0
   _currZoneIndex: -1
@@ -112296,7 +112341,7 @@ GameObject:
   - component: {fileID: 1911658537}
   - component: {fileID: 1911658538}
   m_Layer: 0
-  m_Name: OrbVisual
+  m_Name: CoreVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112873,7 +112918,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2068188187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067ba15f21ee83743adcb1a525aacded, type: 3}
+  m_Script: {fileID: 11500000, guid: c347a16dabd79414ea4b402d5b8c504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTr: {fileID: 1780985915}

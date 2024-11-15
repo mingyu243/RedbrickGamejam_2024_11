@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class OrbEffectController : MonoBehaviour
+public class CoreEffectController : MonoBehaviour
 {
-    [SerializeField] OrbEffectZoneController _zoneController;
+    [SerializeField] CoreEffectZoneController _zoneController;
     [Space]
-    [SerializeField] Orb _orb;
+    [SerializeField] Core _core;
     [SerializeField] Player _player;
     [Space]
     [SerializeField] bool _isOn;
@@ -38,16 +38,16 @@ public class OrbEffectController : MonoBehaviour
             return;
         }
 
-        float distance = Vector3.Distance(_orb.transform.position, _player.transform.position);
+        float distance = Vector3.Distance(_core.transform.position, _player.transform.position);
         int currZoneIndex = _zoneController.GetZoneIndex(distance);
         if (currZoneIndex != _currZoneIndex)
         {
             _currZoneIndex = currZoneIndex;
-            OrbEffectZone zone = _zoneController.GetZone(_currZoneIndex);
+            CoreEffectZone zone = _zoneController.GetZone(_currZoneIndex);
             
             if (zone != null)
             {
-                zone.Effect(_player, _orb);
+                zone.Effect(_player, _core);
             }
         }
     }

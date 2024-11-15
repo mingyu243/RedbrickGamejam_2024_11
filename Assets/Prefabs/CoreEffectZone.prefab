@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5747429069972180448}
-  - component: {fileID: 2828781064237522814}
+  - component: {fileID: 284156956397884730}
   m_Layer: 0
-  m_Name: OrbEffectZone
+  m_Name: CoreEffectZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ Transform:
   - {fileID: 2844988570297418998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2828781064237522814
+--- !u!114 &284156956397884730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5236280144935862042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f3326268e753945b2c1b683f669c24, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d6e668b29a7bb45b6336d452514d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _index: 0

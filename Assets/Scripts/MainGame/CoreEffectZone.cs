@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OrbEffectZone : MonoBehaviour
+public class CoreEffectZone : MonoBehaviour
 {
     [SerializeField] int _index;
     [Space]
@@ -29,13 +29,14 @@ public class OrbEffectZone : MonoBehaviour
         _cachedCircleMaterial.SetFloat(MAX_RADIUS, maxRadius / totalMaxRadius);
     }
 
-    public void Effect(Player player, Orb orb)
+    public void Effect(Player player, Core core)
     {
-        OrbEffectData data = Managers.Data.OrbEffectDatas[_index];
+        CoreEffectData data = Managers.Data.CoreEffectDatas[_index];
 
-        player.Weapon.SetWeaponProperties(data.WeaponCount, data.RotationSpeed, data.WeaponRange);
+        player.Weapon.SetWeaponProperties(data.WeaponCount, data.WeaponSize, data.WeaponRotationSpeed, data.WeaponRange);
         player.PlayerMental.ChangeRate = data.PlayerMentalChangeRate;
+        player.MoveSpeed = data.PlayerMoveSpeed;
 
-        orb.SetLinkPower(_index);
+        core.SetLinkPower(_index);
     }
 }

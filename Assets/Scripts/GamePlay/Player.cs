@@ -18,8 +18,13 @@ public class Player : MonoBehaviour
     public PlayerHealth PlayerHealth => playerHealth;
     public PlayerMental PlayerMental => playerMental;
 
+
     private float moveSoundCooldown = 0.7f; // 사운드 재생 간격 (초)
     private float lastMoveSoundTime; // 마지막으로 사운드가 재생된 시간
+
+    float moveSpeed;
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+    
 
     void Awake()
     {
@@ -38,11 +43,6 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Retry");
         }
         playerData = Managers.Data.PlayerDatas[0];
-
-        //attack = playeraData.Attack;
-        //attackSpeed = playeraData.AttackSpeed;
-        //hp = playeraData.Hp;
-        //moveSpeed = playeraData.MoveSpeed;
 
         PlayerHealth.InitializeHealth(playerData.Hp);
         PlayerMental.Init();
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isLive) return;
-        Vector2 nextVec = inputVec.normalized * playerData.MoveSpeed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
         //위치 이동
         playerRigid.MovePosition(playerRigid.position + nextVec);
 

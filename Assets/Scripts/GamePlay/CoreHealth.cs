@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbHealth : MonoBehaviour
+public class CoreHealth : MonoBehaviour
 {
     [SerializeField] GameObject _blue; // 60 ~ 100%
     [SerializeField] GameObject _yellow; // 30 ~ 60%
@@ -12,9 +12,9 @@ public class OrbHealth : MonoBehaviour
     public int maxHealth = 100; // 초기 체력
     public int health = 100; // 현재 체력
 
-    [SerializeField] private OrbLink _orbLinkRed;
-    [SerializeField] private OrbLink _orbLinkYellow;
-    [SerializeField] private OrbLink _orbLinkBlue;
+    [SerializeField] private CoreLink _coreLinkRed;
+    [SerializeField] private CoreLink _coreLinkYellow;
+    [SerializeField] private CoreLink _coreLinkBlue;
 
     private void Start()
     {
@@ -39,9 +39,9 @@ public class OrbHealth : MonoBehaviour
 
         // 비율에 따른 모습 변화
         float ratio = (float)health / (float)maxHealth;
-        _orbLinkRed.SetWidth(ratio);
-        _orbLinkYellow.SetWidth(ratio);
-        _orbLinkBlue.SetWidth(ratio);
+        _coreLinkRed.SetWidth(ratio);
+        _coreLinkYellow.SetWidth(ratio);
+        _coreLinkBlue.SetWidth(ratio);
 
         ratio *= 100;
         if (ratio >= 60)
@@ -70,8 +70,8 @@ public class OrbHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         SetHealth(health - damage); // 데미지만큼 체력 감소
-        Debug.Log("오브의 현재 체력: " + health);
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.OrbHit);
+        Debug.Log("코어의 현재 체력: " + health);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.CoreHit);
 
         // 체력이 0 이하가 되면 파괴 처리
         if (health <= 0)
@@ -80,10 +80,10 @@ public class OrbHealth : MonoBehaviour
         }
     }
 
-    // 오브가 파괴되었을 때의 처리
+    // 코어가 파괴되었을 때의 처리
     void Die()
     {
-        Managers.GamePlay.MainGame.GameResult = GameResult.OrbDeath;
+        Managers.GamePlay.MainGame.GameResult = GameResult.CoreDeath;
 
         _red.SetActive(false);
         _destroy.SetActive(true);

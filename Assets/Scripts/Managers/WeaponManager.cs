@@ -8,9 +8,10 @@ public class WeaponManager : MonoBehaviour
     public Transform player;        // 플레이어의 Transform
     private List<GameObject> weapons = new List<GameObject>();
 
-    public float rotationSpeed;
+    public float weaponRotationSpeed;
     int weaponCount = 4;
     float weaponRange = 2; // 반지름
+    float weaponSize = 1;
 
     private int previousWeaponCount = -1; // 이전 무기 개수 기록
 
@@ -40,6 +41,10 @@ public class WeaponManager : MonoBehaviour
         for (int i = 0; i < weaponCount; i++)
         {
             GameObject weapon = Instantiate(weaponPrefab, transform);
+            
+            // 무기 크기 조절
+            weapon.transform.localScale = Vector3.one * weaponSize;
+
             float angle = i * Mathf.PI * 2 / weaponCount; // 각도 계산
             Vector3 weaponPosition = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * weaponRange;
             // 이전 위치 적용, 존재하지 않으면 기본 위치 적용
@@ -59,7 +64,7 @@ public class WeaponManager : MonoBehaviour
     // 무기를 플레이어 주위로 회전
     private void RotateWeaponsAroundPlayer()
     {
-        float angle = rotationSpeed * Time.deltaTime;
+        float angle = weaponRotationSpeed * Time.deltaTime;
         foreach (var weapon in weapons)
         {
             weapon.transform.RotateAround(player.position, Vector3.forward, angle);
@@ -77,11 +82,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     // 무기의 개수와 회전 속도를 설정하는 함수
-    public void SetWeaponProperties(int newWeaponCount, float newRotationSpeed, float newWeaponRange)
+    public void SetWeaponProperties(int newWeaponCount, float newWeaponSize, float newWeaponRotationSpeed, float newWeaponRange)
     {
         previousWeaponCount = weaponCount;
         weaponCount = newWeaponCount;
-        rotationSpeed = newRotationSpeed;
+        weaponSize = newWeaponSize;
+        weaponRotationSpeed = newWeaponRotationSpeed;
         weaponRange = newWeaponRange;
         InitializeWeapons();
     }

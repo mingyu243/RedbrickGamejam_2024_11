@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbLink : MonoBehaviour
+public class CoreLink : MonoBehaviour
 {
     [SerializeField] Transform _targetTr;
     [SerializeField] LineRenderer _lineRenderer;

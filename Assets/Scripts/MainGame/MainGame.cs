@@ -15,7 +15,7 @@ public enum GameState
 public enum GameResult
 {
     None,
-    OrbDeath,
+    CoreDeath,
     PlayerDeath,
     Aborted,
 }
@@ -28,11 +28,11 @@ public class MainGame : MonoBehaviour
     [SerializeField] GameResult _gameResult;
     [Space]
     [SerializeField] Player _player;
-    [SerializeField] Orb _orb;
+    [SerializeField] Core _core;
     [Space]
     [SerializeField] TimeController _timeController;
     [SerializeField] WaveController _waveController;
-    [SerializeField] OrbEffectController _orbEffectController;
+    [SerializeField] CoreEffectController _coreEffectController;
     [Space]
     [SerializeField] MonsterSpawner _monsterSpawner;
     [SerializeField] Transform _playerSpawnPositionTr;
@@ -41,10 +41,10 @@ public class MainGame : MonoBehaviour
     public GameResult GameResult { get => _gameResult; set => _gameResult = value; }
     public TimeController TimeController => _timeController;
     public WaveController WaveController => _waveController;
-    public OrbEffectController OrbEffectController => _orbEffectController;
+    public CoreEffectController CoreEffectController => _coreEffectController;
     public MonsterSpawner MonsterSpawner => _monsterSpawner;
     public Player Player => _player;
-    public Orb Orb => _orb;
+    public Core Core => _core;
 
     void Awake()
     {
@@ -120,7 +120,7 @@ public class MainGame : MonoBehaviour
 
         Player.InitState();
         Player.transform.position = _playerSpawnPositionTr.position;
-        Orb.InitState();
+        Core.InitState();
 
         yield return null;
     }
@@ -161,9 +161,9 @@ public class MainGame : MonoBehaviour
         switch (GameResult)
         {
             case GameResult.None: break;
-            case GameResult.OrbDeath:
+            case GameResult.CoreDeath:
                 {
-                    Debug.Log("오브 죽음");
+                    Debug.Log("코어 죽음");
                     yield return new WaitForSeconds(2);
                 }
                 break;
