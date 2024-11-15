@@ -11,8 +11,8 @@ public class CoreEffectZoneController : MonoBehaviour
     CoreEffectZone[] _coreEffectZones;
 
     // 멀어지는 Zone일수록 알파 값이 어떻게 변할건지.
-    const float ZONE_COLOR_ALPHA_MAX = 200f;
-    const float ZONE_COLOR_ALPHA_MIN = 20f;
+    const float ZONE_COLOR_ALPHA_MAX = 0.1f;
+    const float ZONE_COLOR_ALPHA_MIN = 0f;
 
     // Zone 거리 데이터 백업 해놓음 (나중에 거리 계산 쉽게 하려고)
     List<(float dist, int index)> _zoneDistanceThresholds = new List<(float dist, int index)> ();
@@ -38,7 +38,6 @@ public class CoreEffectZoneController : MonoBehaviour
         {
             float minRadius;
             float maxRadius;
-            Color color;
 
             if (i == 0)
             {
@@ -51,9 +50,8 @@ public class CoreEffectZoneController : MonoBehaviour
             maxRadius = coreEffectDatas[i].ZoneRadius;
 
             float alpha = Mathf.Lerp(ZONE_COLOR_ALPHA_MIN, ZONE_COLOR_ALPHA_MAX, 1 - ((float)i / (_coreEffectZones.Length - 1))); // 멀어지는 Zone일수록 알파값이 커지도록 함
-            color = new Color(1, 1, 1, alpha / 255f);
 
-            _coreEffectZones[i].SetUp(i, totalMaxRadius, minRadius, maxRadius, color);
+            _coreEffectZones[i].SetUp(i, totalMaxRadius, minRadius, maxRadius, alpha);
 
             // 거리 백업
             _zoneDistanceThresholds.Add((maxRadius, i));

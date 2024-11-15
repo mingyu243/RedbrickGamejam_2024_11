@@ -8,10 +8,10 @@ public class WeaponManager : MonoBehaviour
     public Transform player;        // 플레이어의 Transform
     private List<GameObject> weapons = new List<GameObject>();
 
-    public float weaponRotationSpeed;
-    int weaponCount = 4;
-    float weaponRange = 2; // 반지름
-    float weaponSize = 1;
+    [SerializeField] float weaponRotationSpeed;
+    [SerializeField] int weaponCount = 4;
+    [SerializeField] float weaponRange = 2; // 반지름
+    [SerializeField] float weaponSize = 1;
 
     private int previousWeaponCount = -1; // 이전 무기 개수 기록
 

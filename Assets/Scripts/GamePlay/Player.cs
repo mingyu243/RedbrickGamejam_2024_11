@@ -18,13 +18,13 @@ public class Player : MonoBehaviour
     public PlayerHealth PlayerHealth => playerHealth;
     public PlayerMental PlayerMental => playerMental;
 
+    float currentBoost;
 
     private float moveSoundCooldown = 0.7f; // 사운드 재생 간격 (초)
     private float lastMoveSoundTime; // 마지막으로 사운드가 재생된 시간
 
     float moveSpeed;
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
-    
 
     void Awake()
     {
@@ -66,7 +66,14 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isLive) return;
-        Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
+
+        if (currentBoost > 0f)
+        {
+            currentBoost -= playerData.BoostDamping * Time.fixedDeltaTime;
+            currentBoost = Mathf.Max(currentBoost, 0f);
+        }
+
+        Vector2 nextVec = inputVec.normalized * moveSpeed * (1 + currentBoost) * Time.fixedDeltaTime;
         //위치 이동
         playerRigid.MovePosition(playerRigid.position + nextVec);
 
@@ -77,6 +84,11 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Move);
             lastMoveSoundTime = Time.time; // 마지막 재생 시간을 갱신
         }
+    }
+
+    public void Boost()
+    {
+        currentBoost = playerData.BoostWhenChangedZone;
     }
 
     void LateUpdate()

@@ -88,12 +88,16 @@ public class DataManager : MonoBehaviour
             int attack = int.Parse(values[0]);
             int hp = int.Parse(values[1]);
             float moveSpeed = float.Parse(values[2]);
+            float boostWhenChangedZone = float.Parse(values[3]);
+            float boostDamping = float.Parse(values[4]);
 
             PlayerData playerData = new PlayerData()
             {
                 Attack = attack,
                 Hp = hp,
-                MoveSpeed = moveSpeed
+                MoveSpeed = moveSpeed,
+                BoostWhenChangedZone = boostWhenChangedZone,
+                BoostDamping = boostDamping,
             };
             _playerDatas[i] = playerData;
         }
@@ -221,7 +225,7 @@ public class DataManager : MonoBehaviour
             float weaponSize = float.Parse(values[3]);
             float weaponRotationSpeed = float.Parse(values[4]);
             float weaponRange = float.Parse(values[5]);
-            
+
             float playerMoveSpeed = float.Parse(values[6]);
             float playerMentalChangeRate = float.Parse(values[7]);
 
