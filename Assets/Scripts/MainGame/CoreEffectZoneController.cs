@@ -84,4 +84,25 @@ public class CoreEffectZoneController : MonoBehaviour
 
         return - 1;
     }
+
+    public Vector2 GetRandomPos(int minZoneId)
+    {
+        CoreEffectData[] coreEffectDatas =  Managers.Data.CoreEffectDatas;
+
+        float minRadius = (minZoneId == 0) ? 0 : coreEffectDatas[minZoneId - 1].ZoneRadius;
+        float maxRadius = coreEffectDatas[coreEffectDatas.Length - 1].ZoneRadius;
+
+        // 랜덤 반지름 (minRadius와 maxRadius 사이)
+        float radius = UnityEngine.Random.Range(minRadius, maxRadius);
+
+        // 랜덤 각도 (0과 2π 사이)
+        float angle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
+
+        // 극좌표를 직교좌표로 변환
+        float x = radius * Mathf.Cos(angle);
+        float y = radius * Mathf.Sin(angle);
+
+        return new Vector2(x, y);
+
+    }
 }

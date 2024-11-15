@@ -8,4 +8,5 @@ public class MonsterData
     public float AttackSpeed;
     public int Hp;
     public float MoveSpeed;
+    public int MinSpawnZoneId;
 }

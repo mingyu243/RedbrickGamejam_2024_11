@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class DataManager : MonoBehaviour
 {
@@ -113,6 +115,7 @@ public class DataManager : MonoBehaviour
             float attackSpeed = float.Parse(values[2]);
             int hp = int.Parse(values[3]);
             float moveSpeed = float.Parse(values[4]);
+            int minSpawnZoneId = int.Parse(values[5]);
 
             MonsterData monsterData = new MonsterData()
             {
@@ -120,7 +123,8 @@ public class DataManager : MonoBehaviour
                 Attack = attack,
                 AttackSpeed = attackSpeed,
                 Hp = hp,
-                MoveSpeed = moveSpeed
+                MoveSpeed = moveSpeed,
+                MinSpawnZoneId = minSpawnZoneId
             };
             _monsterDatas[i] = monsterData;
         }

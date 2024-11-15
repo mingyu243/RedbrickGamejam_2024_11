@@ -26,6 +26,11 @@ public class CoreEffectController : MonoBehaviour
         _isOn = true;
     }
 
+    public Vector2 GetRandomPos(int minZoneId)
+    {
+        return _zoneController.GetRandomPos(minZoneId);
+    }
+
     public void SetOn(bool isOn)
     {
         _isOn = isOn; 
