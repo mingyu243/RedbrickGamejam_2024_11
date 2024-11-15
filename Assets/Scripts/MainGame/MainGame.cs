@@ -33,6 +33,8 @@ public class MainGame : MonoBehaviour
     [SerializeField] TimeController _timeController;
     [SerializeField] WaveController _waveController;
     [SerializeField] CoreEffectController _coreEffectController;
+    [SerializeField] CameraController _cameraController;
+    [SerializeField] MapController _mapController;
     [Space]
     [SerializeField] MonsterSpawner _monsterSpawner;
     [SerializeField] Transform _playerSpawnPositionTr;
@@ -42,6 +44,8 @@ public class MainGame : MonoBehaviour
     public TimeController TimeController => _timeController;
     public WaveController WaveController => _waveController;
     public CoreEffectController CoreEffectController => _coreEffectController;
+    public CameraController CameraController => _cameraController;
+    public MapController MapController => _mapController;
     public MonsterSpawner MonsterSpawner => _monsterSpawner;
     public Player Player => _player;
     public Core Core => _core;

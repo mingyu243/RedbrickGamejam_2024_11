@@ -14,7 +14,7 @@ public class TimeController : MonoBehaviour
     {
         yield return new WaitUntil(() => Managers.IsInit);
 
-        Time.timeScale = Managers.Data.PlayerDatas[0].GameTimeSpeed;
+        Time.timeScale = Managers.Data.ConfigDatas[0].GameTimeSpeed;
     }
 
     public void Init()

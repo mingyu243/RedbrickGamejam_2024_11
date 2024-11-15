@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
     const string DOC_ID = "10NiacqcUdul9EiHZGjPd85O67-KLl42qpaVduHxH9GA";
 
+    const string CONFIG_DATA_G_ID = "1500963198";
     const string PLAYER_DATA_G_ID = "249783776";
     const string MONSTER_DATA_G_ID = "2140484697";
     const string CORE_DATA_G_ID = "1547408368";
@@ -17,6 +18,7 @@ public class DataManager : MonoBehaviour
     // 스프레드 시트에서 읽어온 데이터에서 윗 행을 버림 (설명 10줄, 변수명 1줄)
     const int DUMMY_COUNT = 11;
 
+    [SerializeField] ConfigData[] _configDatas;
     [SerializeField] PlayerData[] _playerDatas;
     [SerializeField] MonsterData[] _monsterDatas;
     [SerializeField] CoreData[] _coreDatas;
@@ -24,6 +26,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] TimeEventData[] _timeEventDatas;
     [SerializeField] WaveData[] _waveDatas;
 
+    public ConfigData[] ConfigDatas => _configDatas;
     public PlayerData[] PlayerDatas => _playerDatas;
     public MonsterData[] MonsterDatas => _monsterDatas;
     public CoreData[] CoreDatas => _coreDatas;
@@ -33,12 +36,39 @@ public class DataManager : MonoBehaviour
 
     public IEnumerator Init()
     {
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, CONFIG_DATA_G_ID, ParseCSVDataConfigData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, PLAYER_DATA_G_ID, ParseCSVDataPlayerData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, MONSTER_DATA_G_ID, ParseCSVDataMonsterData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_DATA_G_ID, ParseCSVDataCoreData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_EFFECT_DATA_G_ID, ParseCSVDataCoreEffectData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, TIME_EVENT_DATA_G_ID, ParseCSVDataTimeEventData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, WAVE_DATA_G_ID, ParseCSVDataWaveData);
+    }
+
+    private void ParseCSVDataConfigData(string csvData)
+    {
+        string[] rows = csvData.Split('\n');  // 각 줄을 분리하여 배열로 저장
+        int rowsCount = rows.Length - DUMMY_COUNT;
+
+        _configDatas = new ConfigData[rowsCount];
+        for (int i = 0; i < rowsCount; i++)
+        {
+            string row = rows[i + DUMMY_COUNT];
+
+            string[] values = row.Split(',');
+
+            float gameTimeSpeed = float.Parse(values[0]);
+            float cameraSize = float.Parse(values[1]);
+            float mapSize = float.Parse(values[2]);
+
+            ConfigData data = new ConfigData()
+            {
+                GameTimeSpeed = gameTimeSpeed,
+                CameraSize = cameraSize,
+                MapSize = mapSize,
+            };
+            _configDatas[i] = data;
+        }
     }
 
     private void ParseCSVDataPlayerData(string csvData)
@@ -56,14 +86,12 @@ public class DataManager : MonoBehaviour
             int attack = int.Parse(values[0]);
             int hp = int.Parse(values[1]);
             float moveSpeed = float.Parse(values[2]);
-            float gameTimeSpeed = float.Parse(values[3]);
 
             PlayerData playerData = new PlayerData()
             {
                 Attack = attack,
                 Hp = hp,
-                MoveSpeed = moveSpeed,
-                GameTimeSpeed = gameTimeSpeed,
+                MoveSpeed = moveSpeed
             };
             _playerDatas[i] = playerData;
         }

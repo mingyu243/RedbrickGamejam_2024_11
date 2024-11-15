@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaxRadius: 0.6
+    - _MaxRadius: 1
     - _MinRadius: 0.33
     - _OutlineWidth: 0.001
     - _ScaleFactor: 1
