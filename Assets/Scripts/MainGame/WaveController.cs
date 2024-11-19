@@ -22,7 +22,7 @@ public class WaveController : MonoBehaviour
         Managers.Ui.Battle.ShowWaveAlert(waveNumber);
         
         int nextWaveId = _currentWaveId + 1;
-        Managers.Ui.Battle.SetNextWaveTime(Managers.Data.TimeEventDatas[nextWaveId].TriggerTime);
+        Managers.Ui.Battle.SetNextWaveTime(Managers.GamePlay.MainGame.TimeController.Duration - Managers.Data.TimeEventDatas[nextWaveId].TriggerTime);
 
         WaveData data = Managers.Data.WaveDatas[_currentWaveId];
 

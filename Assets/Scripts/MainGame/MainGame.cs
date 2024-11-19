@@ -17,6 +17,7 @@ public enum GameResult
     None,
     CoreDeath,
     PlayerDeath,
+    TimeEnd,
     Aborted,
 }
 
@@ -165,16 +166,25 @@ public class MainGame : MonoBehaviour
         switch (GameResult)
         {
             case GameResult.None: break;
-            case GameResult.CoreDeath:
+            case GameResult.CoreDeath: // 게임 패배
                 {
                     Debug.Log("코어 죽음");
                     yield return new WaitForSeconds(2);
+                    Managers.Ui.Battle.ShowGameDefeat();
                 }
                 break;
-            case GameResult.PlayerDeath:
+            case GameResult.PlayerDeath: // 게임 패배
                 {
                     Debug.Log("플레이어 죽음");
                     yield return new WaitForSeconds(2);
+                    Managers.Ui.Battle.ShowGameDefeat();
+                }
+                break;
+            case GameResult.TimeEnd: // 게임 승리
+                {
+                    Debug.Log("시간 끝");
+                    yield return new WaitForSeconds(2);
+                    Managers.Ui.Battle.ShowGameVictory();
                 }
                 break;
             case GameResult.Aborted: break;
@@ -185,11 +195,6 @@ public class MainGame : MonoBehaviour
     IEnumerator EndPhase()
     {
         GameState = GameState.End;
-
-        if (GameResult != GameResult.Aborted)
-        {
-            Managers.Ui.Battle.ShowGameOver();
-        }
 
         MonsterSpawner.Clear();
         Player.PlayerMental.SetVisibleSlider(false);

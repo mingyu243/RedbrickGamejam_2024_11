@@ -12,8 +12,9 @@ public class UI_Battle : MonoBehaviour
     [SerializeField] TMP_Text _waveNumberText;
     [SerializeField] TMP_Text _playerHpText;
     [SerializeField] TMP_Text _nextWaveTimeText;
-    [Header("Game Over Form")]
-    [SerializeField] GameObject _gameOverForm;
+    [Header("Game Result Form")]
+    [SerializeField] GameObject _gameVictoryForm;
+    [SerializeField] GameObject _gameDefeatForm;
     [Header("Game Start Alert")]
     [SerializeField] GameObject _gameStartAlert;
     [Header("Wave Alert")]
@@ -32,7 +33,8 @@ public class UI_Battle : MonoBehaviour
     {
         _waveAlert.SetActive(false);
         _gameStartAlert.SetActive(false);
-        _gameOverForm.SetActive(false);
+        _gameVictoryForm.SetActive(false);
+        _gameDefeatForm.SetActive(false);
     }
 
     public void OnClickSetting()
@@ -57,12 +59,24 @@ public class UI_Battle : MonoBehaviour
 
     public void SetNextWaveTime(float time)
     {
-        _nextWaveTimeText.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
+        if (time >= 0)
+        {
+            _nextWaveTimeText.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
+        }
+        else
+        {
+            _nextWaveTimeText.text = "X";
+        }
     }
 
-    public void ShowGameOver()
+    public void ShowGameVictory()
     {
-        _gameOverForm.SetActive(true);
+        _gameVictoryForm.SetActive(true);
+    }
+
+    public void ShowGameDefeat()
+    {
+        _gameDefeatForm.SetActive(true);
     }
 
     public void ShowGameStartAlert()

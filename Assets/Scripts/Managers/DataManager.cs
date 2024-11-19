@@ -62,12 +62,14 @@ public class DataManager : MonoBehaviour
             float gameTimeSpeed = float.Parse(values[0]);
             float cameraSize = float.Parse(values[1]);
             float mapSize = float.Parse(values[2]);
+            int gameDuration = int.Parse(values[3]);
 
             ConfigData data = new ConfigData()
             {
                 GameTimeSpeed = gameTimeSpeed,
                 CameraSize = cameraSize,
                 MapSize = mapSize,
+                GameDuration = gameDuration,
             };
             _configDatas[i] = data;
         }
