@@ -11,7 +11,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] Camera _minimapCam;
     [Space]
     [SerializeField] CinemachineVirtualCamera _virtualCam;
+    [SerializeField] CinemachineVirtualCamera _virtualCamCore;
 
     public Camera MinimapCam => _minimapCam;
     public CinemachineVirtualCamera VirtualCam => _virtualCam;
+    public CinemachineVirtualCamera VirtualCamCore => _virtualCamCore;
 }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -122,6 +123,7 @@ public class MainGame : MonoBehaviour
 
         TimeController.Init();
         WaveController.Init();
+        CameraController.Init();
 
         Player.InitState();
         Player.transform.position = _playerSpawnPositionTr.position;
@@ -169,22 +171,19 @@ public class MainGame : MonoBehaviour
             case GameResult.CoreDeath: // 게임 패배
                 {
                     Debug.Log("코어 죽음");
-                    yield return new WaitForSeconds(2);
-                    Managers.Ui.Battle.ShowGameDefeat();
+                    yield return ShowDefeat();
                 }
                 break;
             case GameResult.PlayerDeath: // 게임 패배
                 {
                     Debug.Log("플레이어 죽음");
-                    yield return new WaitForSeconds(2);
-                    Managers.Ui.Battle.ShowGameDefeat();
+                    yield return ShowDefeat();
                 }
                 break;
             case GameResult.TimeEnd: // 게임 승리
                 {
                     Debug.Log("시간 끝");
-                    yield return new WaitForSeconds(2);
-                    Managers.Ui.Battle.ShowGameVictory();
+                    yield return ShowVictory();
                 }
                 break;
             case GameResult.Aborted: break;
@@ -200,5 +199,27 @@ public class MainGame : MonoBehaviour
         Player.PlayerMental.SetVisibleSlider(false);
 
         yield return null;
+    }
+
+    IEnumerator ShowDefeat()
+    {
+        CinemachineVirtualCamera vcamCore = Managers.Camera.VirtualCamCore;
+        vcamCore.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        Core.Die();
+
+        yield return new WaitForSeconds(1);
+
+        Managers.Ui.Battle.ShowGameDefeat();
+    }
+
+    IEnumerator ShowVictory()
+    {
+        //CinemachineVirtualCamera vcam = Managers.Camera.VirtualCam;
+
+        yield return null;
+        Managers.Ui.Battle.ShowGameVictory();
     }
 }

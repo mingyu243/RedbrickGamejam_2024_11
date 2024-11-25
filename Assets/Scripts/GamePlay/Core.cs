@@ -39,4 +39,9 @@ public class Core : MonoBehaviour
         _coreLinkYellow.SetPower(1 - ratio);
         _coreLinkBlue.SetPower(1 - ratio);
     }
+
+    public void Die()
+    {
+        coreHealth.Die();
+    }
 }

@@ -76,15 +76,15 @@ public class CoreHealth : MonoBehaviour
         // 체력이 0 이하가 되면 파괴 처리
         if (health <= 0)
         {
-            Die();
+            Managers.GamePlay.MainGame.GameResult = GameResult.CoreDeath;
         }
     }
 
     // 코어가 파괴되었을 때의 처리
-    void Die()
+    public void Die()
     {
-        Managers.GamePlay.MainGame.GameResult = GameResult.CoreDeath;
-
+        _blue.SetActive(false);
+        _yellow.SetActive(false);
         _red.SetActive(false);
         _destroy.SetActive(true);
     }
