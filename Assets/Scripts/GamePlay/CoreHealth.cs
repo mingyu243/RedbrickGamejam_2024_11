@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoreHealth : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class CoreHealth : MonoBehaviour
     [SerializeField] private CoreLink _coreLinkRed;
     [SerializeField] private CoreLink _coreLinkYellow;
     [SerializeField] private CoreLink _coreLinkBlue;
+    [Space]
+    [SerializeField] Slider _uiSlider;
+    [SerializeField] TMP_Text _uiText;
 
     private void Start()
     {
@@ -32,10 +37,15 @@ public class CoreHealth : MonoBehaviour
     public void SetMaxHealth(int value)
     {
         maxHealth = value;
+        _uiSlider.maxValue = value;
     }
     public void SetHealth(int value)
     {
         health = value;
+
+        // UI 적용
+        _uiSlider.value = value;
+        _uiText.text = $"{health} / {maxHealth}";
 
         // 비율에 따른 모습 변화
         float ratio = (float)health / (float)maxHealth;
