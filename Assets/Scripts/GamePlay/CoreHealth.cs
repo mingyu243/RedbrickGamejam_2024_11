@@ -79,8 +79,13 @@ public class CoreHealth : MonoBehaviour
     // 데미지를 받는 메서드
     public void TakeDamage(int damage)
     {
+        // 게임이 끝났다면 데미지 입지 않음.
+        if (Managers.GamePlay.MainGame.GameResult != GameResult.None)
+        {
+            return;
+        }
+
         SetHealth(health - damage); // 데미지만큼 체력 감소
-        Debug.Log("코어의 현재 체력: " + health);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.CoreHit);
 
         // 체력이 0 이하가 되면 파괴 처리

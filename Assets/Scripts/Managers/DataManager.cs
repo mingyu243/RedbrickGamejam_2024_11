@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     const string PLAYER_DATA_G_ID = "249783776";
     const string MONSTER_DATA_G_ID = "2140484697";
     const string CORE_DATA_G_ID = "1547408368";
-    const string CORE_EFFECT_DATA_G_ID = "236506657";
+    const string CORE_EFFECT_ZONE_DATA_G_ID = "236506657";
     const string TIME_EVENT_DATA_G_ID = "1200558053";
     const string WAVE_DATA_G_ID = "1288517331";
 
@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] PlayerData[] _playerDatas;
     [SerializeField] MonsterData[] _monsterDatas;
     [SerializeField] CoreData[] _coreDatas;
-    [SerializeField] CoreEffectData[] _coreEffectDatas;
+    [SerializeField] CoreEffectZoneData[] _coreEffectZoneDatas;
     [SerializeField] TimeEventData[] _timeEventDatas;
     [SerializeField] WaveData[] _waveDatas;
 
@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour
     public PlayerData[] PlayerDatas => _playerDatas;
     public MonsterData[] MonsterDatas => _monsterDatas;
     public CoreData[] CoreDatas => _coreDatas;
-    public CoreEffectData[] CoreEffectDatas => _coreEffectDatas;
+    public CoreEffectZoneData[] CoreEffectZoneDatas => _coreEffectZoneDatas;
     public TimeEventData[] TimeEventDatas => _timeEventDatas;
     public WaveData[] WaveDatas => _waveDatas;
 
@@ -42,7 +42,7 @@ public class DataManager : MonoBehaviour
         yield return GoogleSheetsLoader.LoadData(DOC_ID, PLAYER_DATA_G_ID, ParseCSVDataPlayerData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, MONSTER_DATA_G_ID, ParseCSVDataMonsterData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_DATA_G_ID, ParseCSVDataCoreData);
-        yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_EFFECT_DATA_G_ID, ParseCSVDataCoreEffectData);
+        yield return GoogleSheetsLoader.LoadData(DOC_ID, CORE_EFFECT_ZONE_DATA_G_ID, ParseCSVDataCoreEffectZoneData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, TIME_EVENT_DATA_G_ID, ParseCSVDataTimeEventData);
         yield return GoogleSheetsLoader.LoadData(DOC_ID, WAVE_DATA_G_ID, ParseCSVDataWaveData);
     }
@@ -170,11 +170,13 @@ public class DataManager : MonoBehaviour
 
             int triggerTime = int.Parse(values[0]);
             int waveId = int.Parse(values[1]);
+            int[] blockZoneIds = ParseArrayData(values[2]);
 
             TimeEventData timeEventData = new TimeEventData()
             {
                 TriggerTime = triggerTime,
                 WaveId = waveId,
+                BlockZoneIds = blockZoneIds
             };
             _timeEventDatas[i] = timeEventData;
         }
@@ -209,12 +211,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void ParseCSVDataCoreEffectData(string csvData)
+    private void ParseCSVDataCoreEffectZoneData(string csvData)
     {
         string[] rows = csvData.Split('\n');
         int rowsCount = rows.Length - DUMMY_COUNT;
 
-        _coreEffectDatas = new CoreEffectData[rowsCount];
+        _coreEffectZoneDatas = new CoreEffectZoneData[rowsCount];
         for (int i = 0; i < rowsCount; i++)
         {
             string row = rows[i + DUMMY_COUNT];
@@ -231,7 +233,7 @@ public class DataManager : MonoBehaviour
             float playerMoveSpeed = float.Parse(values[6]);
             float playerMentalChangeRate = float.Parse(values[7]);
 
-            CoreEffectData data = new CoreEffectData()
+            CoreEffectZoneData data = new CoreEffectZoneData()
             {
                 Id = id,
                 ZoneRadius = zoneRadius,
@@ -242,7 +244,25 @@ public class DataManager : MonoBehaviour
                 PlayerMoveSpeed = playerMoveSpeed,
                 PlayerMentalChangeRate = playerMentalChangeRate,
             };
-            _coreEffectDatas[i] = data;
+            _coreEffectZoneDatas[i] = data;
         }
+    }
+
+
+    private int[] ParseArrayData(string arrayDataString)
+    {
+        if (string.IsNullOrEmpty(arrayDataString))
+        {
+            return new int[0]; // 빈 배열 반환
+        }
+
+        // 배열 데이터를 세미콜론으로 나누고, 각 값을 정수로 변환하여 배열로 반환
+        string[] stringValues = arrayDataString.Split(';');
+        int[] intValues = new int[stringValues.Length];
+        for (int i = 0; i < stringValues.Length; i++)
+        {
+            intValues[i] = int.Parse(stringValues[i].Trim()); // 정수로 변환
+        }
+        return intValues;
     }
 }

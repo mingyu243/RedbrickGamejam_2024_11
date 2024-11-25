@@ -13,7 +13,7 @@ public class CoreEffectController : MonoBehaviour
     [Space]
     [SerializeField] bool _isOn;
     [Space]
-    [SerializeField] int _currZoneIndex = -1;
+    [SerializeField] CoreEffectZone _currZone;
 
     public int ZoneCount => _zoneController.ZoneCount;
 
@@ -45,14 +45,32 @@ public class CoreEffectController : MonoBehaviour
 
         float distance = Vector3.Distance(_core.transform.position, _player.transform.position);
         int currZoneIndex = _zoneController.GetZoneIndex(distance);
-        if (currZoneIndex != _currZoneIndex)
+        CoreEffectZone currZone = _zoneController.GetZone(currZoneIndex);
+
+        if (_currZoneIndex currZone != _currZoneIndex)
         {
             _currZoneIndex = currZoneIndex;
             CoreEffectZone zone = _zoneController.GetZone(_currZoneIndex);
-            
             if (zone != null)
             {
                 zone.Effect(_player, _core);
+            }
+        }
+    }
+
+    public void BlockZoneIds(int[] blockZoneIds)
+    {
+        // 모든 구역에 대해 확인
+        for (int i = 0; i < ZoneCount; i++)
+        {
+            // blockZoneIds 배열에 현재 구역 i가 포함되어 있는지 확인
+            if (System.Array.Exists(blockZoneIds, zoneId => zoneId == i))
+            {
+                _zoneController.GetZone(i).Block();
+            }
+            else
+            {
+                _zoneController.GetZone(i).UnBlock();
             }
         }
     }

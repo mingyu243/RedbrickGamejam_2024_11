@@ -17,22 +17,22 @@ public class CoreEffectZoneController : MonoBehaviour
     // Zone 거리 데이터 백업 해놓음 (나중에 거리 계산 쉽게 하려고)
     List<(float dist, int index)> _zoneDistanceThresholds = new List<(float dist, int index)> ();
 
-    public int ZoneCount => Managers.Data.CoreEffectDatas.Length;
+    public int ZoneCount => Managers.Data.CoreEffectZoneDatas.Length;
 
     public void InstantiateZones()
     {
-        CoreEffectData[] coreEffectDatas = Managers.Data.CoreEffectDatas;
+        CoreEffectZoneData[] datas = Managers.Data.CoreEffectZoneDatas;
 
         // Zone 생성
-        _coreEffectZones = new CoreEffectZone[coreEffectDatas.Length];
-        for (int i = 0; i < coreEffectDatas.Length; i++)
+        _coreEffectZones = new CoreEffectZone[datas.Length];
+        for (int i = 0; i < datas.Length; i++)
         {
             CoreEffectZone zone = Instantiate(_zonePrefab, this.transform).GetComponent<CoreEffectZone>();
             _coreEffectZones[i] = zone;
         }
 
         // Zone 셋업
-        float totalMaxRadius = coreEffectDatas[coreEffectDatas.Length - 1].ZoneRadius;
+        float totalMaxRadius = datas[datas.Length - 1].ZoneRadius;
 
         for (int i = 0; i < _coreEffectZones.Length; i++)
         {
@@ -45,9 +45,9 @@ public class CoreEffectZoneController : MonoBehaviour
             }
             else
             {
-                minRadius = coreEffectDatas[i - 1].ZoneRadius;
+                minRadius = datas[i - 1].ZoneRadius;
             }
-            maxRadius = coreEffectDatas[i].ZoneRadius;
+            maxRadius = datas[i].ZoneRadius;
 
             float alpha = Mathf.Lerp(ZONE_COLOR_ALPHA_MIN, ZONE_COLOR_ALPHA_MAX, 1 - ((float)i / (_coreEffectZones.Length - 1))); // 멀어지는 Zone일수록 알파값이 커지도록 함
 
@@ -80,15 +80,15 @@ public class CoreEffectZoneController : MonoBehaviour
             }
         }
 
-        return - 1;
+        return -1;
     }
 
     public Vector2 GetRandomPos(int minZoneId)
     {
-        CoreEffectData[] coreEffectDatas =  Managers.Data.CoreEffectDatas;
+        CoreEffectZoneData[] datas =  Managers.Data.CoreEffectZoneDatas;
 
-        float minRadius = (minZoneId == 0) ? 0 : coreEffectDatas[minZoneId - 1].ZoneRadius;
-        float maxRadius = coreEffectDatas[coreEffectDatas.Length - 1].ZoneRadius;
+        float minRadius = (minZoneId == 0) ? 0 : datas[minZoneId - 1].ZoneRadius;
+        float maxRadius = datas[datas.Length - 1].ZoneRadius;
 
         // 랜덤 반지름 (minRadius와 maxRadius 사이)
         float radius = UnityEngine.Random.Range(minRadius, maxRadius);
@@ -101,6 +101,5 @@ public class CoreEffectZoneController : MonoBehaviour
         float y = radius * Mathf.Sin(angle);
 
         return new Vector2(x, y);
-
     }
 }

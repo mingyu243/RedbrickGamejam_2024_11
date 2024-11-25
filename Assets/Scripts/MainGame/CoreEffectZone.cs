@@ -7,12 +7,17 @@ public class CoreEffectZone : MonoBehaviour
 {
     [SerializeField] int _index;
     [Space]
+    [SerializeField] bool _isBlock;
+    [Space]
     [SerializeField] SpriteRenderer _circle;
     Material _cachedCircleMaterial;
 
     const string ALPHA = "_Alpha";
     const string MIN_RADIUS = "_MinRadius";
     const string MAX_RADIUS = "_MaxRadius";
+
+    public int  Index => _index;
+    public bool IsBlock => _isBlock;
 
     // 모든 Zone의 Scale은 제일 큰 거 기준으로 맞춤. 그 안에서 비율로 두께가 정해짐.
     public void SetUp(int index, float totalMaxRadius, float minRadius, float maxRadius, float alpha)
@@ -32,7 +37,7 @@ public class CoreEffectZone : MonoBehaviour
 
     public void Effect(Player player, Core core)
     {
-        CoreEffectData data = Managers.Data.CoreEffectDatas[_index];
+        CoreEffectZoneData data = Managers.Data.CoreEffectZoneDatas[_index];
 
         player.Weapon.SetWeaponProperties(data.WeaponCount, data.WeaponSize, data.WeaponRotationSpeed, data.WeaponRange);
         player.PlayerMental.ChangeRate = data.PlayerMentalChangeRate;
@@ -42,5 +47,15 @@ public class CoreEffectZone : MonoBehaviour
         player.Boost();
 
         core.SetLinkPower(_index);
+    }
+
+    public void Block()
+    {
+        _isBlock = true;
+    }
+
+    public void UnBlock()
+    {
+        _isBlock = false;
     }
 }

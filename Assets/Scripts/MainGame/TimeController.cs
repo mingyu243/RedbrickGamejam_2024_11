@@ -56,5 +56,6 @@ public class TimeController : MonoBehaviour
     public void TriggerEvent(TimeEventData data)
     {
         Managers.GamePlay.MainGame.WaveController.StartWave(data.WaveId);
+        Managers.GamePlay.MainGame.CoreEffectController.BlockZoneIds(data.BlockZoneIds);
     }
 }
