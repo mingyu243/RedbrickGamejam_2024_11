@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 724720366322516966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 108208773086093812}
@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.79}
+  m_AnchoredPosition: {x: 0, y: 1.1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4886162877288886931
@@ -467,14 +467,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3439334165003468662}
   m_Father: {fileID: 4749935611483578869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116.4, y: 0}
+  m_AnchoredPosition: {x: 120, y: 0}
   m_SizeDelta: {x: 57, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7352600044492915376
@@ -595,7 +595,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7420568080390200839}
   - {fileID: 9154917150202328266}
@@ -603,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116.4, y: 0}
+  m_AnchoredPosition: {x: -120, y: 0}
   m_SizeDelta: {x: 57, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2162960864512584983
@@ -728,6 +728,7 @@ GameObject:
   - component: {fileID: 7549830963028804806}
   - component: {fileID: 3964674919516854831}
   - component: {fileID: 6597262449363900784}
+  - component: {fileID: 7866856264009904089}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -882,7 +883,8 @@ MonoBehaviour:
     Attack: 0
     Hp: 0
     MoveSpeed: 0
-    GameTimeSpeed: 0
+    BoostWhenChangedZone: 0
+    BoostDamping: 0
   isLive: 1
   weaponManager: {fileID: 0}
 --- !u!95 &2504489922614730596
@@ -919,7 +921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  orb: {fileID: 0}
   damageRange: 2
   damageAmount: 5
   damageInterval: 1
@@ -951,6 +952,23 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
+--- !u!320 &7866856264009904089
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427911879550815080}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 8cd858289c7051143a90936058df0679, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &8871414100113041500
 GameObject:
   m_ObjectHideFlags: 0

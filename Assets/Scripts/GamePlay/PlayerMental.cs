@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +41,7 @@ public class PlayerMental : MonoBehaviour
 
     public void ResetValue()
     {
-        _value = 50f;
+        _value = 80f;
         _mentalSlider.value = _value;
     }
 
@@ -67,22 +65,29 @@ public class PlayerMental : MonoBehaviour
         }
 
         _value += Time.deltaTime * ChangeRate;
-        _mentalSlider.value = _value;
 
         if (_value <= 0)
         {
-            ResetValue();
-            Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(+1);
-            _hpMinusAnimationObj.SetActive(false);
-            _hpMinusAnimationObj.SetActive(true);
+            Managers.GamePlay.MainGame.Player.PlayerHealth.Die();
         }
 
-        if (_value >= 100)
-        {
-            ResetValue();
-            Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(-1);
-            _hpPlusAnimationObj.SetActive(false);
-            _hpPlusAnimationObj.SetActive(true);
-        }
+        _value = Mathf.Clamp(_value, 0, 100);
+        _mentalSlider.value = _value;
+
+        //if (_value <= 0)
+        //{
+        //    ResetValue();
+        //    Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(+1);
+        //    _hpMinusAnimationObj.SetActive(false);
+        //    _hpMinusAnimationObj.SetActive(true);
+        //}
+
+        //if (_value >= 100)
+        //{
+        //    ResetValue();
+        //    Managers.GamePlay.MainGame.Player.PlayerHealth.TakeDamage(-1);
+        //    _hpPlusAnimationObj.SetActive(false);
+        //    _hpPlusAnimationObj.SetActive(true);
+        //}
     }
 }

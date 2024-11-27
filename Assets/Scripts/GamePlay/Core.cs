@@ -22,7 +22,7 @@ public class Core : MonoBehaviour
 
     public void InitState()
     {
-        CoreData data =  Managers.Data.CoreDatas[0];
+        CoreData data = Managers.Data.CoreDatas[0];
 
         coreHealth.SetMaxHealth(data.Hp);
         coreHealth.SetHealth(data.Hp);

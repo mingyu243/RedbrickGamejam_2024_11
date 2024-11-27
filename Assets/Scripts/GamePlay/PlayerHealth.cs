@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -40,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("플레이어가 사망했습니다.");
         // 사망 처리 로직 (예: 게임 오버 화면 호출, 애니메이션 재생 등)
