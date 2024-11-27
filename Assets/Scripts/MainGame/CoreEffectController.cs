@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CoreEffectController : MonoBehaviour
@@ -13,7 +10,7 @@ public class CoreEffectController : MonoBehaviour
     [Space]
     [SerializeField] bool _isOn;
     [Space]
-    [SerializeField] CoreEffectZone _currZone;
+    [SerializeField] int _currZoneIndex = -1;
 
     public int ZoneCount => _zoneController.ZoneCount;
 
@@ -33,7 +30,7 @@ public class CoreEffectController : MonoBehaviour
 
     public void SetOn(bool isOn)
     {
-        _isOn = isOn; 
+        _isOn = isOn;
     }
 
     private void Update()
@@ -45,11 +42,20 @@ public class CoreEffectController : MonoBehaviour
 
         float distance = Vector3.Distance(_core.transform.position, _player.transform.position);
         int currZoneIndex = _zoneController.GetZoneIndex(distance);
-        CoreEffectZone currZone = _zoneController.GetZone(currZoneIndex);
 
-        if (_currZoneIndex currZone != _currZoneIndex)
+        //// 현재 Zone이 제한 구역이라면,
+        //if (zone.IsBlock)
+        //{
+        //    // 가장 가까운 구역을 찾아 순간이동.
+        //    int nearestZoneIndex = _zoneController.GetNearestZoneIndex(distance);
+
+        //    currZoneIndex =
+        //}
+
+        if (_currZoneIndex != currZoneIndex)
         {
             _currZoneIndex = currZoneIndex;
+
             CoreEffectZone zone = _zoneController.GetZone(_currZoneIndex);
             if (zone != null)
             {
